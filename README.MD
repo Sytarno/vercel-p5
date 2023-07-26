@@ -6,5 +6,5 @@ The main p5 documentation is [here](https://p5js.org/reference/).
 
 Uncompleted version 1 can be found [here](https://github.com/Sytarno/sytarno.github.io).
 
-#Development
+## Development
 Will progressively merge this into main when a certain feature is complete.

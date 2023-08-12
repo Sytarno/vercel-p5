@@ -19,6 +19,8 @@ const sketch: Sketch = p5 => {
         lifespan: number;
         priority: boolean;
         dr: number;
+        size: number = 10;
+        det_delay: number = 10;
 
         constructor(x=0, y=0){
             this.x = x;
@@ -27,8 +29,9 @@ const sketch: Sketch = p5 => {
             this.lifespan = 300; //duration in frames, stable value
             this.priority = false;
             this.dr = 1;
+            this.det_delay = this.lifespan;
         }
-
+        
         update(){
             p5.push();
 
@@ -40,7 +43,16 @@ const sketch: Sketch = p5 => {
             this.lifespan-=this.dr;
 
             //decay effect
-            if(this.lifespan<10){p5.circle(this.x-xof, this.y-yof, this.lifespan+this.impulse)}else{p5.circle(this.x-xof, this.y-yof, 10+this.impulse)}
+            if(this.det_delay<0){
+                this.lifespan=0;
+            }
+            this.det_delay--;
+            
+            if(this.lifespan<10){
+                p5.circle(this.x-xof, this.y-yof, this.lifespan+this.impulse)
+            }else{
+                p5.circle(this.x-xof, this.y-yof, 10+this.impulse)
+            }
 
             p5.pop();
         }
@@ -53,24 +65,26 @@ const sketch: Sketch = p5 => {
         lifespan: number;
         delay: number;
 
-        constructor(circle_id:number, circle_id2:number){
+        constructor(circle_id:number, circle_id2:number, delay:number=0){
             this.circle_id=circle_id;
             this.circle_id2=circle_id2;
-            this.stroke=5;
-            this.lifespan=15;
-            this.delay=0;
+            this.stroke=15;
+            this.lifespan=10;
+            this.delay=delay;
         }
 
         update(){
-            p5.push();
+            if(this.delay){ this.delay--; }else{
+                p5.push();
 
-            p5.stroke(p5.color(200,255));
-            p5.strokeWeight(this.stroke*this.lifespan/15);
-            p5.line(circ[this.circle_id].x-xof, circ[this.circle_id].y-yof, circ[this.circle_id2].x-xof, circ[this.circle_id2].y-yof)
+                p5.stroke(p5.color(200,255));
+                p5.strokeWeight(this.stroke*this.lifespan/15);
+                p5.line(circ[this.circle_id].x-xof, circ[this.circle_id].y-yof, circ[this.circle_id2].x-xof, circ[this.circle_id2].y-yof)
 
-            this.lifespan-=1;
+                this.lifespan--;
 
-            p5.pop();
+                p5.pop();
+            }
         }
     }
 
@@ -85,6 +99,9 @@ const sketch: Sketch = p5 => {
     let hit: boolean = true;
     let strike_delay: number = 60*2;
 
+    const max_attachment_radius = 300;
+    const break_speed = 5; //duration between creating links
+
     //for priority functions
     function updateColor(){
         for (var i = circ.length - 1; i>=0; i--){
@@ -95,11 +112,19 @@ const sketch: Sketch = p5 => {
 
     function updateGraph(){
         if(circ.length<1){ return; }
-        
-        let vis: number[] = [];
+    
         let cur = circ.length-1;
         for (var i = circ.length - 1; i>=0; i--){
             circ[i].priority=false;
+        }
+        circ[cur].priority=true;
+    }
+
+    function init_branch(){
+        //console.log("start branch", p5.frameCount);
+        let vis: number[] = [];
+        let cur = circ.length-1;
+        for (var i = circ.length - 1; i>=0; i--){
             vis[i]=0;
         }
         circ[cur].priority=true;
@@ -121,8 +146,6 @@ const sketch: Sketch = p5 => {
         
         //This is the traveling salesman problem. 
         //There are a myriad of ways to solve this, but nearest neighbor is probably the fastest approach.
-        const max_attachment_radius = 300;
-        const break_speed = 15; //duration between creating links
         //If we cannot find a node that will survive long enough, abandon it
         path = [cur];
 
@@ -130,7 +153,11 @@ const sketch: Sketch = p5 => {
             let min=p5.windowWidth*2;
             let select=-1;
             for (var i = 0; i < circ.length; i++){
-                if(vis[i]==0 && dist[cur][i] < max_attachment_radius && dist[cur][i] < min && dist[cur][i] != 0){// && path.length*break_speed < circ[i].lifespan){
+                if(vis[i]==0 && dist[cur][i] < max_attachment_radius 
+                    && dist[cur][i] < min 
+                    && dist[cur][i] != 0 
+                    && (path.length+5)*break_speed < circ[i].lifespan
+                    ){
                     min=dist[cur][i];
                     select=i;
                 }
@@ -144,12 +171,12 @@ const sketch: Sketch = p5 => {
         }
 
         while(find()>-1){}
-    }
 
-    function init_branch(){
-        console.log(path)
+        //console.log(p5.frameCount, "firing", path)
+        circ[path[0]].lifespan = 20;
         for (var i = 0; i<path.length-1; i++){
-            lines.push(new line(path[i], path[i+1]));
+            lines.push(new line(path[i], path[i+1], break_speed*i));
+            circ[path[i+1]].det_delay = break_speed*(i+1);
         }
     }
 

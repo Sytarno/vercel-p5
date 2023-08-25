@@ -59,15 +59,15 @@ const sketch: Sketch = p5 => {
     }
 
     class line{
-        circle_id: number;
-        circle_id2: number;
+        x1: number; y1: number;
+        x2: number; y2: number;
         stroke: number;
         lifespan: number;
         delay: number;
 
-        constructor(circle_id:number, circle_id2:number, delay:number=0){
-            this.circle_id=circle_id;
-            this.circle_id2=circle_id2;
+        constructor(x1:number, y1:number, x2:number, y2:number, delay:number=0){
+            this.x1=x1; this.y1=y1;
+            this.x2=x2; this.y2=y2;
             this.stroke=15;
             this.lifespan=10;
             this.delay=delay;
@@ -79,7 +79,7 @@ const sketch: Sketch = p5 => {
 
                 p5.stroke(p5.color(200,255));
                 p5.strokeWeight(this.stroke*this.lifespan/15);
-                p5.line(circ[this.circle_id].x-xof, circ[this.circle_id].y-yof, circ[this.circle_id2].x-xof, circ[this.circle_id2].y-yof)
+                p5.line(this.x1, this.y1, this.x2, this.y2);
 
                 this.lifespan--;
 
@@ -175,7 +175,9 @@ const sketch: Sketch = p5 => {
         //console.log(p5.frameCount, "firing", path)
         circ[path[0]].lifespan = 20;
         for (var i = 0; i<path.length-1; i++){
-            lines.push(new line(path[i], path[i+1], break_speed*i));
+            let a=circ[path[i]];
+            let b=circ[path[i+1]];
+            lines.push(new line(a.x-xof, a.y-yof, b.x-xof, b.y-yof, break_speed*i));
             circ[path[i+1]].det_delay = break_speed*(i+1);
         }
     }

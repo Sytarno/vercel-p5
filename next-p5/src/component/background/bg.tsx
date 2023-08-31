@@ -77,7 +77,7 @@ const sketch: Sketch = p5 => {
             if(this.delay){ this.delay--; }else{
                 p5.push();
 
-                p5.stroke(p5.color(200,255));
+                p5.stroke(p5.color(255,255));
                 p5.strokeWeight(this.stroke*this.lifespan/15);
                 p5.line(this.x1, this.y1, this.x2, this.y2);
 
@@ -184,13 +184,14 @@ const sketch: Sketch = p5 => {
 
     p5.draw = () => {
         p5.background('#1D1D1D');
-        p5.normalMaterial();
-        p5.push();
-        p5.rotateZ(p5.frameCount * 0.01);
-        p5.rotateX(p5.frameCount * 0.01);
-        p5.rotateY(p5.frameCount * 0.01);
-        p5.plane(100);
-        p5.pop();
+        
+        //p5.normalMaterial();
+        //p5.push();
+        //p5.rotateZ(p5.frameCount * 0.01);
+        //p5.rotateX(p5.frameCount * 0.01);
+        //p5.rotateY(p5.frameCount * 0.01);
+        //p5.plane(100);
+        //p5.pop();
 
         for (var i = circ.length - 1; i>-1; i--){
             circ[i].update();
@@ -227,8 +228,9 @@ const sketch: Sketch = p5 => {
     }
 };
 
-export default function Background() {
+export default function Background(props: any) {
     return (
-        <NextReactP5Wrapper sketch={sketch}/>
+        <NextReactP5Wrapper sketch={sketch} {...props}>
+        </NextReactP5Wrapper>
     )
 }

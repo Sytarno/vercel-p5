@@ -27,4 +27,14 @@ body {
   
     overflow: hidden;
     cursor: none; /* Hide the default cursor */
-  }
+}
+
+.layout {
+  position: relative;
+}
+
+.bg {
+  top: 0;
+  z-index: -1;
+  position: absolute;
+}

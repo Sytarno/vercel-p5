@@ -7,11 +7,13 @@
     font-display: auto;
 }
 
-.text {
-    font-size: 50px;
-    font-family: NeueMontreal;
-}
-
 .container {
+    user-select: text;
+    top: 0;
+    font-size: 50px;
+    /*letter-spacing: 0;*/
+    font-family: NeueMontreal;
     background-color: transparent;
+    mix-blend-mode: difference;
+    color: rgb(var(--foreground-rgb));
 }

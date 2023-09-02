@@ -2,39 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 214, 219, 220;
+    --background-rgb: 29, 29, 29;
+    --background-rgb-start: 0, 0, 0;
   }
 }
 
+:root {
+  --foreground-rgb: 214, 219, 220;
+  --background-rgb: 29, 29, 29;
+  --background-rgb-start: 0, 0, 0;
+}
+
+/*
+:root {
+  --foreground-rgb: 29, 29, 29;
+  --background-rgb: 214, 219, 220;
+  --background-rgb-start: 255, 255, 255;
+}
+*/
+
+/*test theme*/
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 29, 29, 29;
+    --background-rgb: 214, 219, 220;
+    --background-rgb-start: 255, 255, 255;
+  }
+}
+*/
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  
-    overflow: hidden;
-    cursor: none; /* Hide the default cursor */
+  background: rgb(var(--background-rgb-start));
+  overflow: hidden;
+  cursor: none; /* Hide the default cursor */
+  user-select: none;
 }
 
 .layout {
+  user-select: none;
   position: relative;
+  width: 50%;
+  /*padding: calc(6.66667vh - .5vw) 3.3333333333vw 0;*/
+  left: 25%;
+  top: 20vh;
+  padding-right: 0;
 }
 
 .bg {
   top: 0;
   z-index: -1;
   position: absolute;
+}
+
+
+::selection {
+  background-color: rgb(var(--background-rgb));
+  background-blend-mode: difference;
 }

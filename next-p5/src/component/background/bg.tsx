@@ -6,6 +6,22 @@ import { NextReactP5Wrapper } from "@p5-wrapper/next";
 
 const sketch: Sketch = p5 => {
     let xof: number, yof: number;
+    let opa = 0;
+    let bgcolor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--background-rgb').split(',').map(Number);
+
+    let foregroundcolor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--foreground-rgb').split(',').map(Number); 
+
+    let bgscolor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--background-rgb-start').split(',').map(Number); 
+
+
+    //let bgc = p5.color('#1D1D1D');
+    let bgc = p5.color(bgcolor);
+    let fgc = p5.color(foregroundcolor);
+    let bgcs = p5.color(bgscolor);
+
     p5.setup = () => {
         p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL)
         xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
@@ -34,9 +50,10 @@ const sketch: Sketch = p5 => {
         
         update(){
             p5.push();
+            p5.strokeWeight(0);
 
             //show last placed
-            if(this.priority){p5.fill(p5.color('#f5d742'))}else{p5.fill(p5.color(200,255))}
+            if(this.priority){p5.fill(p5.color('#f5d742'))}else{p5.fill(fgc)}
             
             //spawn effect
             if(this.impulse<0.1){this.impulse=0}else{this.impulse/=1.1}
@@ -77,7 +94,7 @@ const sketch: Sketch = p5 => {
             if(this.delay){ this.delay--; }else{
                 p5.push();
 
-                p5.stroke(p5.color(255,255));
+                p5.stroke(fgc);
                 p5.strokeWeight(this.stroke*this.lifespan/15);
                 p5.line(this.x1, this.y1, this.x2, this.y2);
 
@@ -99,7 +116,7 @@ const sketch: Sketch = p5 => {
     let hit: boolean = true;
     let strike_delay: number = 60*2;
 
-    const max_attachment_radius = 300;
+    const max_attachment_radius = 400;
     const break_speed = 5; //duration between creating links
 
     //for priority functions
@@ -183,8 +200,14 @@ const sketch: Sketch = p5 => {
     }
 
     p5.draw = () => {
-        p5.background('#1D1D1D');
-        
+        p5.push();
+    
+        p5.background(p5.lerpColor(bgcs, bgc, opa));
+        if(opa < 1){
+            opa+=0.02
+        }
+        p5.pop();
+
         //p5.normalMaterial();
         //p5.push();
         //p5.rotateZ(p5.frameCount * 0.01);

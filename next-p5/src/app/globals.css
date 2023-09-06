@@ -39,19 +39,18 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb-start));
-  overflow: hidden;
   cursor: none; /* Hide the default cursor */
   user-select: none;
+  overflow-x: hidden;
 }
 
 .layout {
   user-select: none;
   position: relative;
-  width: 50%;
+  width: 80%;
   /*padding: calc(6.66667vh - .5vw) 3.3333333333vw 0;*/
-  left: 25%;
-  top: 20vh;
-  padding-right: 0;
+  margin-left: 20vw;
+  height: 200vh;
 }
 
 .bg {
@@ -64,4 +63,8 @@ body {
 ::selection {
   background-color: rgb(var(--background-rgb));
   background-blend-mode: difference;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

@@ -94,7 +94,7 @@ const sketch: Sketch = p5 => {
             if(this.delay){ this.delay--; }else{
                 p5.push();
 
-                p5.stroke(fgc);
+                p5.stroke(p5.color(255,255));
                 p5.strokeWeight(this.stroke*this.lifespan/15);
                 p5.line(this.x1, this.y1, this.x2, this.y2);
 

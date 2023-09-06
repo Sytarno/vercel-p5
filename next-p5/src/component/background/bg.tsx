@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import { useEffect } from "react";
 import { type Sketch } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
+
+
 
 const sketch: Sketch = p5 => {
     let xof: number, yof: number;
@@ -241,6 +243,10 @@ const sketch: Sketch = p5 => {
     p5.windowResized = () => {
       p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
       xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
+    }
+
+    p5.mouseWheel = () => {
+        
     }
 
     p5.mouseClicked = () => {

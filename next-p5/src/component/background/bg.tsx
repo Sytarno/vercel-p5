@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
-import { type Sketch } from "@p5-wrapper/react";
+import { useEffect, useState } from "react";
+import { P5CanvasInstance, Sketch, SketchProps } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 
+type CanvasProps = SketchProps & {
+    wyof: number;
+}
 
-
-const sketch: Sketch = p5 => {
-    let xof: number, yof: number;
-    let opa = 0;
+const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
+    let xof: number, yof: number, wyof: number; //x offset, y offset, window y offset
+    let opa = 0, ytarg = 0; //initial opacity
     let bgcolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb').split(',').map(Number);
 
@@ -29,6 +31,10 @@ const sketch: Sketch = p5 => {
         xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
         //initialized framerate is 60
     };
+
+    p5.updateWithProps = props => {
+        wyof = props.wyof;
+    }
 
     class star{
         x: number;
@@ -202,14 +208,14 @@ const sketch: Sketch = p5 => {
     }
 
     p5.draw = () => {
+        ytarg = p5.lerp(ytarg, -wyof, 0.07);
+        p5.translate(0, ytarg);
+
         p5.push();
-    
         p5.background(p5.lerpColor(bgcs, bgc, opa));
         if(opa < 1){
             opa+=0.02
         }
-        p5.pop();
-
         //p5.normalMaterial();
         //p5.push();
         //p5.rotateZ(p5.frameCount * 0.01);
@@ -238,28 +244,50 @@ const sketch: Sketch = p5 => {
             init_branch();
             hit = true;
         }
+        p5.pop();
     };
 
     p5.windowResized = () => {
-      p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
-      xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
+        p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+        xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
     }
 
-    p5.mouseWheel = () => {
-        
-    }
-
-    p5.mouseClicked = () => {
-        circ.push(new star(p5.mouseX, p5.mouseY));
+    const apply = (x: number, y: number) => {
+        circ.push(new star(x, y));
         initHit=p5.frameCount;
         hit=false;
         updateColor();
     }
+
+    p5.mouseClicked = () => {
+        apply(p5.mouseX, p5.mouseY-ytarg);
+    }
+
+    //necessary?
+    p5.touchEnded = () => {
+        //apply(p5.mouseX, p5.mouseY);
+    }
 };
 
 export default function Background(props: any) {
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+
+        handleScroll();
+        console.log("Initial");
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <NextReactP5Wrapper sketch={sketch} {...props}>
+        <NextReactP5Wrapper sketch={sketch} wyof={scrollY} {...props}>
         </NextReactP5Wrapper>
     )
 }

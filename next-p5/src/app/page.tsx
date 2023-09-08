@@ -8,7 +8,9 @@ function Home() {
     <main> 
     
       <div className="layout">
-        <Title/>   
+        <div className="flex-column">
+          <Title/> 
+        </div>
       </div>
 
       <div className="bg">

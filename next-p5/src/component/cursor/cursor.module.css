@@ -1,17 +1,32 @@
 .cursorparent {
+    --cursor-size: 30px;
+
     position: fixed;
-    z-index: 10000;
-    left: -7.5px;
-    top: -7.5px;
+    z-index: -1;
+    left: calc(var(--cursor-size)/-2.0);
+    top: calc(var(--cursor-size)/-2.0);
     pointer-events: none;
+
+    /*
+    transition: 0.03s;
+    transform: translate(-50%, -50%);
+    */
 }
 
 .cursordot {
     position: fixed;
-    width: 15px;
-    height: 15px;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
     border-radius: 50%;
     background-color: rgb(var(--foreground-rgb));
     mix-blend-mode: difference;
     opacity: 100%;
+
+    transition-timing-function: cubic-bezier(0.3, 0.1, 0.2, 1);
+    transition-duration: 0.3s;
+    transform: scale3d(0.5, 0.5, 1);
+}
+
+.cursordot.onheader {
+    transform: scale3d(1, 1, 1);
 }

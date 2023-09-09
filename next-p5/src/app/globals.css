@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: NeueMontreal;
+  src: 
+      url('/fonts/PPNeueMontreal-Thin.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {

@@ -1,22 +1,28 @@
 import localFont from 'next/font/local'
-import { ThemeProvider } from "next-themes";
 
 import styles from "./title.module.css";
+import cstyles from "../cursor/cursor.module.css"
 
-const Title = () => {
+interface P {
+    setCursor: any;
+}
+
+const Title: React.FC<P> = (props) => {
     return (
         <div className={styles.container}>
         
-            <div>
+            <h1>
             Evan Nguyen
-            </div>
-            
-            <div 
-            style={{
-                fontSize: '40%',
-            }}>
-            new-grad
-            </div>
+            </h1>
+
+            <p>
+                <a
+                onMouseEnter={() => props.setCursor(`${cstyles.onheader}`)}
+                onMouseLeave={() => props.setCursor("")}
+                >
+                new-grad
+                </a>
+            </p>
         
         </div>
     )

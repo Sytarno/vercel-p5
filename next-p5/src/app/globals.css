@@ -2,29 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: NeueMontreal;
+  src: 
+      url('/fonts/PPNeueMontreal-Thin.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 214, 219, 220;
+    --background-rgb: 29, 29, 29;
+    --background-rgb-start: 0, 0, 0;
   }
 }
 
+:root {
+  --foreground-rgb: 214, 219, 220;
+  --background-rgb: 29, 29, 29;
+  --background-rgb-start: 0, 0, 0;
+}
+
+/*
+:root {
+  --foreground-rgb: 29, 29, 29;
+  --background-rgb: 214, 219, 220;
+  --background-rgb-start: 255, 255, 255;
+}
+*/
+
+/*test theme*/
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 29, 29, 29;
+    --background-rgb: 214, 219, 220;
+    --background-rgb-start: 255, 255, 255;
+  }
+}
+*/
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-rgb-start));
+  cursor: none; /* Hide the default cursor */
+  user-select: none;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.layout {
+  position: relative;
+  width: 80%;
+  /*padding: calc(6.66667vh - .5vw) 3.3333333333vw 0;*/
+  margin-left: 20vw;
+  height: 200vh;
+  user-select: none;
+}
+
+.bg {
+  top: 0;
+  z-index: -10;
+  position: fixed;
+}
+
+.flex-column {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  flex-direction: column;
   
-    overflow: hidden;
-    cursor: none; /* Hide the default cursor */
-  }
+  /*position: sticky;*/
+}
+
+::selection {
+  background-color: rgb(var(--background-rgb));
+  background-blend-mode: difference;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /*
+  width: 5px;
+  background-color: transparent;
+  */
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+

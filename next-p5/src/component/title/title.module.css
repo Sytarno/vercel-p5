@@ -1,0 +1,38 @@
+.container {
+    text-align: left;
+    display: inline-block;
+    user-select: text;
+    font-family: NeueMontreal;
+
+    background-color: transparent;
+    mix-blend-mode: difference;
+    color: rgb(var(--foreground-rgb));
+}
+
+.container h1 {
+    margin: -0.1em 0 0 -0.05em;
+    display: block;
+    font-size: 60px;
+    /*letter-spacing: 0;*/
+    font-family: inherit;
+    background-color: inherit;
+    mix-blend-mode: inherit;
+    color: inherit;
+    line-height: 105%;
+}
+
+.container p {
+    display: block;
+    background-color: transparent;
+    mix-blend-mode: difference;
+}
+
+.container a {
+    font-size: 20px;
+    display: inline-block;
+    /*letter-spacing: 0;*/
+    font-family: NeueMontreal;
+    line-height: 105%;
+
+    user-select: none;
+}

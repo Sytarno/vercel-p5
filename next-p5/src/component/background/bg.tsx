@@ -212,10 +212,16 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         p5.translate(0, ytarg);
 
         p5.push();
+        
+        /*
         p5.background(p5.lerpColor(bgcs, bgc, opa));
         if(opa < 1){
             opa+=0.02
         }
+        */
+
+        p5.background(bgc);
+
         //p5.normalMaterial();
         //p5.push();
         //p5.rotateZ(p5.frameCount * 0.01);
@@ -269,7 +275,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 };
 
-export default function Background(props: any) {
+export default function Background() {
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -278,7 +284,6 @@ export default function Background(props: any) {
         };
 
         handleScroll();
-        console.log("Initial");
 
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -287,7 +292,10 @@ export default function Background(props: any) {
     }, []);
 
     return (
-        <NextReactP5Wrapper sketch={sketch} wyof={scrollY} {...props}>
+        <NextReactP5Wrapper 
+            sketch={sketch} 
+            wyof={scrollY} 
+        >
         </NextReactP5Wrapper>
     )
 }

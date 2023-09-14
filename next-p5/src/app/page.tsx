@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Layout from "@/component/layout/layout"
 import Background from '@/component/background/bg'
 import Cursor from '@/component/cursor/cursor'
 
@@ -14,11 +15,10 @@ function Home() {
   return (
     <main> 
       <Cursor cursor={cursor}/>
-      <div className="layout">
-        <div className="flex-column">
+      <Layout>
           <Title setCursor={setCursor}/> 
-        </div>
-      </div>
+          <Title setCursor={setCursor}/> 
+      </Layout>
 
       <div className="bg">
         <Background/>     

@@ -11,6 +11,8 @@ type CanvasProps = SketchProps & {
 const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let xof: number, yof: number, wyof: number; //x offset, y offset, window y offset
     let opa = 0, ytarg = 0; //initial opacity
+    let tFrames = 60;
+
     let bgcolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb').split(',').map(Number);
 
@@ -29,7 +31,8 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     p5.setup = () => {
         p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL)
         xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
-        //initialized framerate is 60
+
+        p5.frameRate(tFrames);
     };
 
     p5.updateWithProps = props => {
@@ -45,12 +48,13 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         dr: number;
         size: number = 10;
         det_delay: number = 10;
+        threshold: number = 10;
 
         constructor(x=0, y=0){
             this.x = x;
             this.y = y;
             this.impulse=10
-            this.lifespan = 300; //duration in frames, stable value
+            this.lifespan = 5 * tFrames; //duration in frames, stable value
             this.priority = false;
             this.dr = 1;
             this.det_delay = this.lifespan;
@@ -103,7 +107,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
                 p5.push();
 
                 p5.stroke(p5.color(255,255));
-                p5.strokeWeight(this.stroke*this.lifespan/15);
+                p5.strokeWeight(this.stroke*this.lifespan/10);
                 p5.line(this.x1, this.y1, this.x2, this.y2);
 
                 this.lifespan--;
@@ -122,7 +126,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let path: number[] = [];
     let initHit: number = -1;
     let hit: boolean = true;
-    let strike_delay: number = 60*2;
+    let strike_delay: number = tFrames*2;
 
     const max_attachment_radius = 400;
     const break_speed = 5; //duration between creating links

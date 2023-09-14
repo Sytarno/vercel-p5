@@ -53,27 +53,10 @@ body {
   scroll-behavior: smooth;
 }
 
-.layout {
-  position: relative;
-  width: 80%;
-  /*padding: calc(6.66667vh - .5vw) 3.3333333333vw 0;*/
-  margin-left: 20vw;
-  height: 200vh;
-  user-select: none;
-}
-
 .bg {
   top: 0;
   z-index: -10;
   position: fixed;
-}
-
-.flex-column {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  flex-direction: column;
-  
-  /*position: sticky;*/
 }
 
 ::selection {
@@ -92,4 +75,3 @@ body {
 ::-webkit-scrollbar-track {
   display: none;
 }
-

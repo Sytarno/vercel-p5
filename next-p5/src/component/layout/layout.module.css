@@ -17,6 +17,9 @@
   
     height: 200vh;
     user-select: none;
+
+    justify-content: center;
+    gap: 1%;
 }
 
 .flexcolumn {
@@ -27,7 +30,7 @@
     margin-left:0;
   
     flex-direction: column;
-    width: 50%;
+    width: 48%;
     
     /*position: sticky;*/
   }

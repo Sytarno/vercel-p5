@@ -1,7 +1,11 @@
-import localFont from 'next/font/local'
-
 import styles from "./title.module.css";
 import cstyles from "../cursor/cursor.module.css"
+
+import {
+    AiFillGithub,
+    AiFillLinkedin,
+    AiFillMail
+} from 'react-icons/ai';
 
 interface P {
     setCursor: any;
@@ -24,6 +28,12 @@ const Title: React.FC<P> = (props) => {
                 </a>
             </p>
         
+            <div className={styles.icons}>
+                <AiFillGithub size={32} />
+                <AiFillLinkedin size={32} />
+                <AiFillMail size={32} />
+            </div>
+
         </div>
     )
 }

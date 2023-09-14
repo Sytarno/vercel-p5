@@ -1,0 +1,11 @@
+.container {
+    text-align: left;
+    display: inline-block;
+    user-select: text;
+    font-family: NeueMontrealBook;
+
+    background-color: transparent;
+    mix-blend-mode: difference;
+    color: rgb(var(--foreground-rgb));
+    font-size: 18px;
+}

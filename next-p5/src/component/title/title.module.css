@@ -2,7 +2,7 @@
     text-align: left;
     display: inline-block;
     user-select: text;
-    font-family: NeueMontreal;
+    font-family: NeueMontrealThin;
 
     background-color: transparent;
     mix-blend-mode: difference;
@@ -10,7 +10,7 @@
 }
 
 .container h1 {
-    margin: -0.1em 0 0 -0.05em;
+    margin: -0.1em 0 0 -0.07em;
     display: block;
     font-size: 60px;
     /*letter-spacing: 0;*/
@@ -31,8 +31,14 @@
     font-size: 20px;
     display: inline-block;
     /*letter-spacing: 0;*/
-    font-family: NeueMontreal;
+    font-family: NeueMontrealThin;
     line-height: 105%;
 
     user-select: none;
+}
+
+.icons{
+    display: flex;
+    padding-top: 2rem;
+    gap: 0.5rem;
 }

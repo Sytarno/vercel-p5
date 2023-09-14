@@ -1,0 +1,33 @@
+.layout {
+    position: relative;
+    width: 80%;
+    
+    /*padding: calc(6.66667vh - .5vw) 3.3333333333vw 0;*/
+    
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding-left: 8vw;
+    padding-right: 8vw;
+    
+    padding-bottom: 0;
+    padding-top: 0;
+  
+    box-sizing: border-box;
+    display: inline-flex;
+  
+    height: 200vh;
+    user-select: none;
+}
+
+.flexcolumn {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  
+    margin-right:0;
+    margin-left:0;
+  
+    flex-direction: column;
+    width: 50%;
+    
+    /*position: sticky;*/
+  }

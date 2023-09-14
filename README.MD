@@ -10,8 +10,14 @@ Uncompleted version 1 can be found [here](https://github.com/Sytarno/sytarno.git
 Will progressively merge this into main when a certain feature is complete.
 
 Todo list / Changelog
- - [ ] Add scrolling support for the p5 background, track vertical viewport position
- - [ ] Extra stars.
+ - [x] Add scrolling support for the p5 background, track vertical viewport position
+ - [x] Cursor expands on relevant content
  - [ ] Icon buttons for linkedin, github, and resume
- - [ ] Project icons/boxes
- - [ ] Custom scroll effect with revealing dates
+ - [ ] Interactive subheader
+ - [ ] Project section w/ icons/description
+ - [ ] Custom scrollbar effect with revealing dates
+ 
+Flex goals
+ - [ ] Extra stars, tile effect bg
+ - [ ] Preloader anim
+ - [ ] Element reveal anim 

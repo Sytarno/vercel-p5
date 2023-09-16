@@ -11,6 +11,7 @@ import Bio from '@/component/bio/bio';
 
 function Home() {
   const [cursor, setCursor] = useState('');
+  const [iconPos, setIconPos] = useState({x: 0, y: 0});
 
   return (
     <main> 

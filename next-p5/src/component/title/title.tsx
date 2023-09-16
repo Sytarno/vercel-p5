@@ -4,12 +4,13 @@ import cstyles from "../cursor/cursor.module.css"
 import {
     AiFillGithub,
     AiFillLinkedin,
-    AiFillMail
 } from 'react-icons/ai';
 
-interface P {
-    setCursor: any;
-}
+import {
+    RiMailFill
+} from 'react-icons/ri'
+
+import P from "../interface";
 
 const Title: React.FC<P> = (props) => {
     return (
@@ -28,10 +29,11 @@ const Title: React.FC<P> = (props) => {
                 </a>
             </p>
         
-            <div className={styles.icons}>
-                <AiFillGithub size={32} />
-                <AiFillLinkedin size={32} />
-                <AiFillMail size={32} />
+            <div className={styles['icon-container']}>
+                <AiFillGithub className={styles.icon} size={32} />
+                <AiFillLinkedin className={styles.icon} size={32} />
+                <RiMailFill className={styles.icon} size={32} />
+                <AiFillGithub className={styles.placehold} size={32} />
             </div>
 
         </div>

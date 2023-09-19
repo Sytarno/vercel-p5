@@ -21,3 +21,4 @@ Flex goals
  - [ ] Extra stars, tile effect bg
  - [ ] Preloader anim
  - [ ] Element reveal anim 
+ - [ ] Spotify rich presence?

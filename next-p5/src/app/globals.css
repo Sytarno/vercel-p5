@@ -60,12 +60,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.bg {
-  top: 0;
-  z-index: -10;
-  position: fixed;
-}
-
 ::selection {
   background-color: rgb(var(--background-rgb));
   background-blend-mode: difference;

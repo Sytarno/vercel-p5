@@ -1,5 +1,7 @@
 "use client";
 
+import styles from './bg.module.css'
+
 import { useEffect, useState } from "react";
 import { P5CanvasInstance, Sketch, SketchProps } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
@@ -296,10 +298,12 @@ export default function Background() {
     }, []);
 
     return (
-        <NextReactP5Wrapper 
-            sketch={sketch} 
-            wyof={scrollY} 
-        >
-        </NextReactP5Wrapper>
+        <div className={styles.bg}>
+            <NextReactP5Wrapper 
+                sketch={sketch} 
+                wyof={scrollY} 
+            >
+            </NextReactP5Wrapper>
+        </div>
     )
 }

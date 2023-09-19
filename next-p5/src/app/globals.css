@@ -54,15 +54,19 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb-start));
+  
   cursor: none; /* Hide the default cursor */
   user-select: none;
   overflow-x: hidden;
+  
   scroll-behavior: smooth;
 }
 
 ::selection {
   background-color: rgb(var(--background-rgb));
+  /*
   background-blend-mode: difference;
+  */
 }
 
 ::-webkit-scrollbar {

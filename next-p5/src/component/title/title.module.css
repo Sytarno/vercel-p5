@@ -1,7 +1,6 @@
 .container {
-    text-align: left;
-    display: inline-block;
     user-select: text;
+    text-size-adjust: 100%;
     font-family: NeueMontrealThin;
 
     background-color: transparent;
@@ -11,7 +10,6 @@
 
 .container h1 {
     margin: -0.1em 0 0 -0.07em;
-    display: block;
     font-size: 60px;
     /*letter-spacing: 0;*/
     font-family: inherit;
@@ -22,14 +20,12 @@
 }
 
 .container p {
-    display: block;
     background-color: transparent;
     mix-blend-mode: difference;
 }
 
 .container a {
     font-size: 20px;
-    display: inline-block;
     /*letter-spacing: 0;*/
     font-family: NeueMontrealThin;
     line-height: 105%;

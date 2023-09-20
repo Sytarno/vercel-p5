@@ -1,7 +1,10 @@
+import styles from "./display.module.css";
 
 const Display = () => {
     return (
-        <div></div>
+        <div className={styles['column']}>
+            
+        </div>
     )
 }
 

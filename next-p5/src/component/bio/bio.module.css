@@ -8,4 +8,6 @@
     mix-blend-mode: difference;
     color: rgb(var(--foreground-rgb));
     font-size: 18px;
+
+    padding-top: 10vh;
 }

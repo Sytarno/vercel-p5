@@ -9,6 +9,7 @@ import Scroll from '@/component/scroll/scroll';
 
 import Title from '@/component/title/title';
 import Bio from '@/component/bio/bio';
+import Display from "@/component/display/display";
 
 function Home() {
   const [cursor, setCursor] = useState('');
@@ -17,13 +18,17 @@ function Home() {
   return (
     <main> 
       <Cursor cursor={cursor}/>
+      <Scroll/>
 
       <Layout>
-          <Title setCursor={setCursor}/> 
-          <Bio setCursor={setCursor}/> 
+          <div>
+            <Title setCursor={setCursor}/> 
+            <Bio setCursor={setCursor}/>
+          </div>
+          <Display/>
       </Layout>
+  
 
-      <Scroll/>
       <Background/>     
     </main>
   )

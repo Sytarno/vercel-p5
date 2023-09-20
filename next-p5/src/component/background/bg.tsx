@@ -218,10 +218,9 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 
     p5.draw = () => {
-        ytarg = p5.lerp(ytarg, -wyof, 0.05);
-        console.log("ytargupt:", ytarg);
-
+        ytarg = p5.lerp(ytarg, -wyof, 0.07);
         p5.translate(0, ytarg);
+        //console.log("ytarg2", ytarg);
 
         /*
         p5.background(p5.lerpColor(bgcs, bgc, opa));
@@ -284,7 +283,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 };
 
-export default function Background() {
+const Background = () => {
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -310,3 +309,5 @@ export default function Background() {
         </div>
     )
 }
+
+export default Background;

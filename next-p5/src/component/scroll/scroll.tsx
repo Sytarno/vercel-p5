@@ -8,7 +8,13 @@ const Scroll = () => {
 
     useEffect(() => {
         const onResize = () => {
-            setLimit(document.documentElement.clientHeight);
+            var body = document.body, html = document.documentElement;
+            let l = Math.max( 
+                body.scrollHeight, body.offsetHeight, 
+                html.clientHeight, html.scrollHeight, 
+                html.offsetHeight
+            ) - window.innerHeight;
+            setLimit(l);
         };
 
         onResize();

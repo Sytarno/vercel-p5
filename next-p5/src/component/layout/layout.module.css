@@ -22,6 +22,7 @@
 
 .flexcolumn {
     width: 48%;
+    height: max-content;
 
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -30,7 +31,7 @@
     flex-direction: column;
     box-sizing: border-box;
 
-    max-height: 100vw;
+    /*max-height: 100vw;*/
     
     /*position: sticky;*/
 }

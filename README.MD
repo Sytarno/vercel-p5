@@ -12,7 +12,7 @@ Will progressively merge this into main when a certain feature is complete.
 Todo list / Changelog
  - [x] Add scrolling support for the p5 background, track vertical viewport position
  - [x] Cursor expands on relevant content
- - [ ] Icon buttons for linkedin, github, and resume
+ - [x] Icon buttons for linkedin, github, and resume
  - [ ] Interactive subheader
  - [ ] Project section w/ icons/description
  - [ ] Custom scrollbar effect with revealing dates
@@ -21,3 +21,4 @@ Flex goals
  - [ ] Extra stars, tile effect bg
  - [ ] Preloader anim
  - [ ] Element reveal anim 
+ - [ ] Spotify rich presence?

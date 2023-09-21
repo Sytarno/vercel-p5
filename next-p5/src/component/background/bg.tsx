@@ -1,5 +1,7 @@
 "use client";
 
+import styles from './bg.module.css'
+
 import { useEffect, useState } from "react";
 import { P5CanvasInstance, Sketch, SketchProps } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
@@ -10,7 +12,7 @@ type CanvasProps = SketchProps & {
 
 const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let xof: number, yof: number, wyof: number; //x offset, y offset, window y offset
-    let opa = 0, ytarg = 0; //initial opacity
+    let opa: number, ytarg: number;
     let tFrames = 60;
 
     let bgcolor = getComputedStyle(document.documentElement)
@@ -33,10 +35,15 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         xof = p5.windowWidth/2.0, yof = p5.windowHeight/2.0;
 
         p5.frameRate(tFrames);
+        ytarg = 0; 
+        wyof = 0;
+        opa = 0;
     };
 
     p5.updateWithProps = props => {
-        wyof = props.wyof;
+        if(props.wyof){
+            wyof = props.wyof;
+        }
     }
 
     class star{
@@ -150,7 +157,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 
     function init_branch(){
-        //console.log("start branch", p5.frameCount);
+      
         let vis: number[] = [];
         let cur = circ.length-1;
         for (var i = circ.length - 1; i>=0; i--){
@@ -201,7 +208,6 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
 
         while(find()>-1){}
 
-        //console.log(p5.frameCount, "firing", path)
         circ[path[0]].lifespan = 20;
         for (var i = 0; i<path.length-1; i++){
             let a=circ[path[i]];
@@ -214,9 +220,8 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     p5.draw = () => {
         ytarg = p5.lerp(ytarg, -wyof, 0.07);
         p5.translate(0, ytarg);
+        //console.log("ytarg2", ytarg);
 
-        p5.push();
-        
         /*
         p5.background(p5.lerpColor(bgcs, bgc, opa));
         if(opa < 1){
@@ -254,7 +259,6 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
             init_branch();
             hit = true;
         }
-        p5.pop();
     };
 
     p5.windowResized = () => {
@@ -279,7 +283,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 };
 
-export default function Background() {
+const Background = () => {
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -296,10 +300,14 @@ export default function Background() {
     }, []);
 
     return (
-        <NextReactP5Wrapper 
-            sketch={sketch} 
-            wyof={scrollY} 
-        >
-        </NextReactP5Wrapper>
+        <div className={styles.bg}>
+            <NextReactP5Wrapper 
+                sketch={sketch} 
+                wyof={scrollY} 
+            >
+            </NextReactP5Wrapper>
+        </div>
     )
 }
+
+export default Background;

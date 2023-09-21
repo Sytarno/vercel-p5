@@ -1,11 +1,16 @@
-import localFont from 'next/font/local'
-
 import styles from "./title.module.css";
 import cstyles from "../cursor/cursor.module.css"
 
-interface P {
-    setCursor: any;
-}
+import {
+    AiFillGithub,
+    AiFillLinkedin,
+} from 'react-icons/ai';
+
+import {
+    RiMailFill
+} from 'react-icons/ri'
+
+import P from "../interface";
 
 const Title: React.FC<P> = (props) => {
     return (
@@ -24,6 +29,13 @@ const Title: React.FC<P> = (props) => {
                 </a>
             </p>
         
+            <div className={styles['icon-container']}>
+                <AiFillGithub className={styles.icon} size={32} />
+                <AiFillLinkedin className={styles.icon} size={32} />
+                <RiMailFill className={styles.icon} size={32} />
+                <AiFillGithub className={styles.placehold} size={32} />
+            </div>
+
         </div>
     )
 }

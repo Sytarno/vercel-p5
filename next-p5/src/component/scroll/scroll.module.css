@@ -1,0 +1,33 @@
+.scroll-bar {
+    background-color: rgba(var(--foreground-rgb), 0.1);
+    position: fixed;
+    top: 35vh;
+    right: 6vw;
+    
+    height: 30vh;
+    width: 2px;
+    
+    mix-blend-mode: difference;
+
+    padding-left: 0;
+    overflow-y: hidden;
+}
+
+.scroll-dot {
+
+    background-color: rgb(var(--foreground-rgb));
+    position: relative;
+
+    height: 1vw;
+    width: 100%;
+
+    border-radius: 0%;
+    mix-blend-mode: difference;
+
+    /* Noticed a performance issue doing this */
+    /*
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-duration: 0.1s;
+    */
+
+}

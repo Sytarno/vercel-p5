@@ -3,10 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: NeueMontreal;
+  font-family: NeueMontrealThin;
   src: 
       url('/fonts/PPNeueMontreal-Thin.otf') format('opentype');
-  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: NeueMontrealBook;
+  src: 
+      url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
   font-style: normal;
   font-display: auto;
 }
@@ -14,14 +21,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 214, 219, 220;
-    --background-rgb: 29, 29, 29;
+    --background-rgb: 21, 21, 21;
     --background-rgb-start: 0, 0, 0;
   }
 }
 
 :root {
   --foreground-rgb: 214, 219, 220;
-  --background-rgb: 29, 29, 29;
+  --background-rgb: 21, 21, 21;
   --background-rgb-start: 0, 0, 0;
 }
 
@@ -47,21 +54,19 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb-start));
+  
   cursor: none; /* Hide the default cursor */
   user-select: none;
   overflow-x: hidden;
+  
   scroll-behavior: smooth;
-}
-
-.bg {
-  top: 0;
-  z-index: -10;
-  position: fixed;
 }
 
 ::selection {
   background-color: rgb(var(--background-rgb));
+  /*
   background-blend-mode: difference;
+  */
 }
 
 ::-webkit-scrollbar {

@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## NextJS & p5-wrapper Personal Website - Evan Nguyen
+Personal portfolio website v2. 
 
-## Getting Started
+NextJS can be found [here](https://nextjs.org/docs), and p5-wrapper can be found [here](https://github.com/P5-wrapper/react).
+The main p5 documentation is [here](https://p5js.org/reference/).
 
-First, run the development server:
+Uncompleted version 1 of my portfolio can be found [here](https://github.com/Sytarno/sytarno.github.io).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Development
+Will progressively merge this into main when a certain feature is complete.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Todo list / Changelog
+ - [x] Add scrolling support for the p5 background, track vertical viewport position
+ - [x] Cursor expands on relevant content
+ - [x] Icon buttons for linkedin, github, and resume
+ - [ ] Interactive subheader
+ - [ ] Project section w/ icons/description
+ - [ ] Custom scrollbar effect with revealing dates
+ 
+Flex goals
+ - [ ] Extra stars, tile effect bg
+ - [ ] Preloader anim
+ - [ ] Element reveal anim 
+ - [ ] Spotify rich presence?

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: false,
+    reactStrictMode: true,
     webpack: function(config) {
         config.module.rules.push({
             test: /\.md$/,
@@ -13,7 +13,11 @@ const nextConfig = {
         };
 
         return config
-    }
+    },
+    
+    compiler: {
+        removeConsole: false,
+    },
 }
 
 module.exports = nextConfig

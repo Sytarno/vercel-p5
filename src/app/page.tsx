@@ -1,6 +1,8 @@
 import Portfolio from "@/pages/main/main";
 
-function Home({ projects }: any) {
+//moved everything to use getStaticProps, maybe will refactor later
+
+function Home() {
   return (
     <Portfolio/>
   )

@@ -1,4 +1,4 @@
-import Portfolio from "@/pages/Main/Main";
+import Portfolio from "@/pages/main/main";
 
 function Home({ projects }: any) {
   return (

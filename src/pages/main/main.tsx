@@ -34,11 +34,8 @@ const Portfolio = ({projects = []}: any) =>{
     )
 }
 
-import matter from "gray-matter";
 //import fs from "fs";
 import fs from "fs/promises";
-import glob from "fast-glob";
-import { GetServerSideProps } from 'next';
 
 async function getMeta() {
   console.log(process.cwd());

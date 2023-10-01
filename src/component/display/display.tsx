@@ -1,15 +1,32 @@
 import styles from "./display.module.css";
+import { Md } from "../interface";
+
+const Card = (project: Md) => {
+  
+}
 
 //const Display = () => {
 const Display = ({ projects = [] }: any) => {
 
-  console.log("projects loaded", projects);
+  if(projects.length == 0){
+    const m: Md = {
+      title: "dummy_title",
+      description: "dummy_description",
+      link: "dummy_link",
+    }
+    projects = [
+      m
+    ]
+  }
+
+  console.log("loaded projects", projects);
+
   return (
       <div className={styles['column']}>
         {
-          projects.map( (slug: any, id: any) => (
+          projects.map( (slug: any, id: number) => (
             <div key={id}>
-              {slug}
+              {slug.title}
             </div>
           ))
         } 

@@ -43,8 +43,8 @@ async function getMeta() {
   
     const fd = "src/proj/";
     const fi = await fs.readdir(fd);
-    const mdp = fi.filter( (file) => file.endsWith(".md") );
-    const slugs = mdp.map( (file) => file.replace(".md", "") );
+    const mdf = fi.filter( (file) => file.endsWith(".md") );
+    const slugs = mdf.map( (file) => file.replace(".md", "") );
     return slugs;
   
   } catch (error) {
@@ -55,14 +55,22 @@ async function getMeta() {
   }
 }
 
+import matter from "gray-matter";
+import { Md } from "../../component/interface";
+
 export async function getStaticProps() {
 //export const getServerSideProps: GetServerSideProps = async () => {
   console.log("EXECUTING FETCH");
   
   const projects = await getMeta();
+  let exports: Md[] = [];
+
+  projects.forEach( (slug) => {
+    exports.push(matter.read("src/proj/" + slug + ".md").data as Md);
+  })
 
   return {
-    props: { projects: projects },
+    props: { projects: exports },
     revalidate: 1,
   }
 }

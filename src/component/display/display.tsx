@@ -8,6 +8,7 @@ const Card = (project: Md) => {
 //const Display = () => {
 const Display = ({ projects = [] }: any) => {
 
+  /**
   if(projects.length == 0){
     const m: Md = {
       title: "dummy_title",
@@ -18,6 +19,7 @@ const Display = ({ projects = [] }: any) => {
       m
     ]
   }
+  **/
 
   console.log("loaded projects", projects);
 

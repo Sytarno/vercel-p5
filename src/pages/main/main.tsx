@@ -11,7 +11,7 @@ import Title from '@/component/title/title';
 import Bio from '@/component/bio/bio';
 import Display from "@/component/display/display";
 
-const Portfolio = ({projects = []}: any) =>{
+const Portfolio = ({ projects }: any) =>{
     const [cursor, setCursor] = useState('');
     //const [iconPos, setIconPos] = useState({x: 0, y: 0});
     
@@ -59,7 +59,6 @@ import { Md } from "../../component/interface";
 
 export async function getStaticProps() {
 //export const getServerSideProps: GetServerSideProps = async () => {
-  console.log("EXECUTING FETCH");
   
   const projects = await getMeta();
   let exports: Md[] = [];
@@ -67,6 +66,8 @@ export async function getStaticProps() {
   projects.forEach( (slug) => {
     exports.push(matter.read("src/proj/" + slug + ".md").data as Md);
   })
+
+  console.log("getStaticProps:", exports);
 
   return {
     props: { projects: exports },

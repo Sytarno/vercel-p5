@@ -14,7 +14,7 @@ import Display from "@/component/display/display";
 
 
 
-function Home() {
+const Page = () => {
   const [projects, setProjects] = useState<Md[]>([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Home() {
         const response = await fetch(`/api/getMeta`);
         const data: Md[] = await response.json();
         setProjects(data);
-        
+
       } catch (error) {
         console.error("Error accessing md frontmatter:", error);
         return [];
@@ -55,5 +55,4 @@ function Home() {
   )
 }
 
-
-export default Home;
+export default Page;

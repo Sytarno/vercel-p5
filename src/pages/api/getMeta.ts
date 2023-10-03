@@ -2,10 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs/promises';
 import { Md } from '@/component/interface';
 import matter from 'gray-matter';
+import path from 'path';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+async function getMeta(req: NextApiRequest, res: NextApiResponse){
   try {
-    const fd = "src/proj/";
+    //const fd = "src/proj/";
+    const fd = path.join(process.cwd(), `src`, `proj`);
     const fi = await fs.readdir(fd);
     const mdf = fi.filter((file) => file.endsWith(".md"));
     const slugs = mdf.map((file) => file.replace(".md", ""));
@@ -26,3 +28,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export default getMeta;

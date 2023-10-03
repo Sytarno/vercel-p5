@@ -40,10 +40,8 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         opa = 0;
     };
 
-    p5.updateWithProps = props => {
-        if(props.wyof){
-            wyof = props.wyof;
-        }
+    p5.updateWithProps = (props: CanvasProps) => {
+        wyof = props.wyof;
     }
 
     class star{
@@ -305,8 +303,7 @@ const Background = () => {
             <NextReactP5Wrapper 
                 sketch={sketch} 
                 wyof={scrollY} 
-            >
-            </NextReactP5Wrapper>
+            />
         </div>
     )
 }

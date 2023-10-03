@@ -1,5 +1,6 @@
 import styles from "./display.module.css";
 import { Md } from "../interface";
+import { useEffect } from "react";
 
 const Card = (project: Md) => {
   
@@ -8,18 +9,20 @@ const Card = (project: Md) => {
 //const Display = () => {
 const Display = ({ projects = [] }: any) => {
 
-  if(projects.length == 0){
-    const m: Md = {
-      title: "dummy_title",
-      description: "dummy_description",
-      link: "dummy_link",
+  useEffect(() => {
+    if(projects.length == 0){
+      const m: Md = {
+        title: "dummy_title",
+        description: "dummy_description",
+        link: "dummy_link",
+      }
+      projects = [
+        m
+      ]
     }
-    projects = [
-      m
-    ]
-  }
 
-  console.log("loaded projects", projects);
+    console.log("loaded projects", projects);
+  }, [])
 
   return (
       <div className={styles['column']}>

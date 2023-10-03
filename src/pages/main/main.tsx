@@ -13,7 +13,7 @@ import Display from "@/component/display/display";
 
 const Portfolio = ({projects = []}: any) =>{
     const [cursor, setCursor] = useState('');
-    const [iconPos, setIconPos] = useState({x: 0, y: 0});
+    //const [iconPos, setIconPos] = useState({x: 0, y: 0});
     
     return(
         <main> 
@@ -38,7 +38,6 @@ const Portfolio = ({projects = []}: any) =>{
 import fs from "fs/promises";
 
 async function getMeta() {
-  console.log(process.cwd());
   try{
   
     const fd = "src/proj/";
@@ -71,7 +70,7 @@ export async function getStaticProps() {
 
   return {
     props: { projects: exports },
-    revalidate: 1,
+    revalidate: false,
   }
 }
 

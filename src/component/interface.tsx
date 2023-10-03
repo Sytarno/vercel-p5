@@ -7,11 +7,11 @@ interface P {
 interface Md {
     title: string,
     description: string,
-    image?: string,
 
+    image?: string,
     link?: string,
     stargazers?: number,
-    last_commit?: Date;
+    last_commit?: Date
 }
 
 export type {

@@ -40,10 +40,8 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         opa = 0;
     };
 
-    p5.updateWithProps = props => {
-        if(props.wyof){
-            wyof = props.wyof;
-        }
+    p5.updateWithProps = (props: CanvasProps) => {
+        wyof = props.wyof;
     }
 
     class star{
@@ -218,9 +216,10 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 
     p5.draw = () => {
-        ytarg = p5.lerp(ytarg, -wyof, 0.07);
+        if(Math.abs(-wyof - ytarg) > 0.1){
+            ytarg = p5.lerp(ytarg, -wyof, 0.07);
+        }
         p5.translate(0, ytarg);
-        //console.log("ytarg2", ytarg);
 
         /*
         p5.background(p5.lerpColor(bgcs, bgc, opa));
@@ -304,8 +303,7 @@ const Background = () => {
             <NextReactP5Wrapper 
                 sketch={sketch} 
                 wyof={scrollY} 
-            >
-            </NextReactP5Wrapper>
+            />
         </div>
     )
 }

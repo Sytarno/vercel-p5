@@ -10,7 +10,7 @@ import {
     RiMailFill
 } from 'react-icons/ri'
 
-import P from "../interface";
+import { P } from "../interface";
 
 const Title: React.FC<P> = (props) => {
     return (

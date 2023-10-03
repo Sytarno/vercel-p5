@@ -1,7 +1,7 @@
 import styles from "./bio.module.css";
 import cstyles from "../cursor/cursor.module.css"
 
-import P from "../interface";
+import { P } from "../interface";
 
 const Bio: React.FC<P> = (props) => {
     return (

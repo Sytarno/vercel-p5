@@ -13,7 +13,7 @@ Todo list / Changelog
  - [x] Add scrolling support for the p5 background, track vertical viewport position
  - [x] Cursor expands on relevant content
  - [x] Icon buttons for linkedin, github, and resume
- - [x] Implemented mini-backend to dynamically fetch markdown files.
+ - [x] Implemented mini-backend to dynamically fetch markdown files
  - [ ] Interactive subheader
  - [ ] Project section w/ icons/description
  - [ ] Custom scrollbar effect with revealing dates

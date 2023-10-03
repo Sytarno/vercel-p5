@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
 import Layout from '@/component/layout/layout';
 import Background from '@/component/background/bg';
@@ -56,11 +57,31 @@ async function getMeta() {
 
 import matter from "gray-matter";
 import { Md } from "../../component/interface";
+import { NextPageContext } from 'next'
 
-export async function getStaticProps() {
-//export const getServerSideProps: GetServerSideProps = async () => {
+/**
+//export async function getStaticProps() {
+export const getServerSideProps = (async (context: any) => {
+//Portfolio.getInitialProps = async (ctx: NextPageContext) => {
   
-  const projects = await getMeta();
+  let projects: string[] = [];
+  try{
+    
+    const fd = "src/proj/";
+    const fi = await fs.readdir(fd);
+    const mdf = fi.filter( (file) => file.endsWith(".md") );
+    const slugs = mdf.map( (file) => file.replace(".md", "") );
+    projects = slugs;
+
+  } catch (error) {
+
+    console.error("Error reading files:", error);
+    return {
+      props: { projects: [] }
+    }
+
+  }
+  
   let exports: Md[] = [];
 
   projects.forEach( (slug) => {
@@ -70,9 +91,40 @@ export async function getStaticProps() {
   console.log("getStaticProps:", exports);
 
   return {
-    props: { projects: exports },
-    revalidate: false,
+    props: { projects: exports }
   }
 }
+) satisfies GetServerSideProps<{
+  projects: Md[];
+}>
+**/
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  try {
+      const fd = "src/proj/";
+      const fi = await fs.readdir(fd);
+      const mdf = fi.filter((file) => file.endsWith(".md"));
+      const slugs = mdf.map((file) => file.replace(".md", ""));
+
+      const projects: Md[] = await Promise.all(
+          slugs.map(async (slug) => {
+              const content = await fs.readFile(`src/proj/${slug}.md`, 'utf-8');
+              const { data } = matter(content);
+              return data as Md;
+          })
+      );
+
+      console.log("getServerSideProps:", projects);
+
+      return {
+          props: { projects }
+      };
+  } catch (error) {
+      console.error("Error reading files:", error);
+      return {
+          props: { projects: [] }
+      };
+  }
+};
 
 export default Portfolio;

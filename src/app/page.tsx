@@ -12,7 +12,13 @@ import Title from '@/component/title/title';
 import Bio from '@/component/bio/bio';
 import Display from "@/component/display/display";
 
+import { Suspense } from "react";
 
+const Loading = () => {
+  return (
+    <div>Loading...</div>
+  )
+}
 
 const Page = () => {
   const [projects, setProjects] = useState<Md[]>([]);
@@ -27,6 +33,7 @@ const Page = () => {
       } catch (error) {
         console.error("Error accessing md frontmatter:", error);
         return [];
+        
       }
     }
 
@@ -46,7 +53,9 @@ const Page = () => {
               <Title setCursor={setCursor}/> 
               <Bio setCursor={setCursor}/>
           </div>
-          <Display projects={projects}/>
+          <Suspense fallback = {<Loading/>}>
+            <Display projects={projects}/>
+          </Suspense>
       </Layout>
   
 

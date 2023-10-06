@@ -2,7 +2,15 @@ import styles from "./display.module.css";
 import { Md } from "../interface";
 
 const Card = (project: Md) => {
-  
+  return (
+    <div className={styles['card']}>
+      <div className={styles['date']}>OCT 2017</div>
+      <div className={styles['body']}>
+        <div className={styles['title']}>{project.title}</div>
+        <div className={styles['description']}>{project.description}</div>
+      </div>
+      </div>
+  )
 }
 
 //const Display = () => {
@@ -12,7 +20,7 @@ const Display = ({ projects = [] }: any) => {
         {
           projects.map( (slug: any, id: number) => (
             <div key={id}>
-              {slug.title}
+              {Card(slug)}
             </div>
           ))
         } 

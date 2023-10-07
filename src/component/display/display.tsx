@@ -1,5 +1,6 @@
 import styles from "./display.module.css";
 import { Md } from "../interface";
+import { useEffect, useState } from "react";
 
 const Card = (project: Md) => {
   return (
@@ -13,16 +14,46 @@ const Card = (project: Md) => {
   )
 }
 
+const Loading = () => {
+  return (
+    <div className={styles['loading']}>
+      Loading...
+    </div>
+  )
+}
+
 //const Display = () => {
-const Display = ({ projects = [] }: any) => {
+const Display = () => {
+  const [projects, setProjects] = useState<Md[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 3000)) //for testing
+        const response = await fetch(`/api/getMeta`);
+        const data: Md[] = await response.json();
+        setProjects(data);
+        setLoading(false);
+
+      } catch (error) {
+        console.error("Error accessing md frontmatter:", error);
+        return [];
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+  
   return (
       <div className={styles['column']}>
-        {
-          projects.map( (slug: any, id: number) => (
+        { loading ? <Loading/> :
+          (projects.map( (slug: any, id: number) => (
             <div key={id}>
               {Card(slug)}
             </div>
-          ))
+          )))
         } 
       </div>
   )

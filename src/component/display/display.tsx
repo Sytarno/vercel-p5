@@ -38,8 +38,8 @@ const Display = () => {
 
       } catch (error) {
         console.error("Error accessing md frontmatter:", error);
-        return [];
         setLoading(false);
+        return [];
       }
     }
 

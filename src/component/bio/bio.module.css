@@ -2,12 +2,18 @@
     text-align: left;
     display: inline-block;
     user-select: text;
-    font-family: NeueMontrealBook;
+    font-family: NeueMontrealThin;
 
     background-color: transparent;
     mix-blend-mode: difference;
-    color: rgb(var(--foreground-rgb));
-    font-size: 18px;
-
+    
     padding-top: 10vh;
+}
+
+.about-text {
+    width: 475px;
+    font-family: NeueMontrealBook;
+    color: rgb(var(--foreground-rgb));
+    font-size: 19px;
+    letter-spacing: 0px;
 }

@@ -14,6 +14,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let xof: number, yof: number, wyof: number; //x offset, y offset, window y offset
     let opa: number, ytarg: number;
     let tFrames = 60;
+    let mouseState: number;
 
     let bgcolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb').split(',').map(Number);
@@ -273,7 +274,17 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 
     p5.mouseClicked = () => {
-        apply(p5.mouseX, p5.mouseY-ytarg);
+        //apply(p5.mouseX, p5.mouseY-ytarg);
+    }
+
+    p5.mousePressed = () => {
+        mouseState = p5.frameCount;
+    }
+
+    p5.mouseReleased = () => {
+        if(p5.frameCount - mouseState < 15){
+            apply(p5.mouseX, p5.mouseY-ytarg);
+        }
     }
 
     //necessary?

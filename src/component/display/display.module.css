@@ -47,6 +47,7 @@
 }
 
 .card .body {
+    margin-right: 1rem;
     grid-column: 3 / 9;
     grid-row: 1 / 4;
     padding: 1rem 0rem;

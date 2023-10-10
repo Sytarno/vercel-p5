@@ -22,7 +22,7 @@
   :root {
     --foreground-rgb: 214, 219, 220;
     --foreground-rgb-darker: 174, 179, 180;
-    --grey-out: 154, 159, 160;
+    --grey-out: 124, 129, 130;
     --background-rgb: 21, 21, 21;
     --background-rgb-start: 0, 0, 0;
   }
@@ -30,10 +30,10 @@
 
 :root {
   --foreground-rgb: 214, 219, 220;
-  --foreground-rgb-darker: 194, 199, 200;
-  --grey-out: 174, 179, 180;
-  --background-rgb: 21, 21, 21;
-  --background-rgb-start: 0, 0, 0;
+    --foreground-rgb-darker: 174, 179, 180;
+    --grey-out: 124, 129, 130;
+    --background-rgb: 21, 21, 21;
+    --background-rgb-start: 0, 0, 0;
 }
 
 /*

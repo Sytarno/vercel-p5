@@ -8,4 +8,5 @@ tech:
  - Pycord (Discord)
  - Spotipy (Spotify API)
  - Oracle Cloud
+date: "2020-2-23"
 ---

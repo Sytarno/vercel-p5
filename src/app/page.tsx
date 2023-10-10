@@ -29,7 +29,7 @@ const Page = () => {
               <Title setCursor={setCursor}/> 
               <Bio setCursor={setCursor}/>
           </div>
-            <Display/>
+            <Display setCursor={setCursor}/>
       </Layout>
   
 

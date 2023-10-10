@@ -8,8 +8,10 @@ interface Md {
     title: string,
     description: string,
 
-    image?: string,
     link?: string,
+    image?: string,
+    date?: string,
+
     stargazers?: number,
     last_commit?: Date
 }

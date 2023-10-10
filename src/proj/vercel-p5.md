@@ -11,6 +11,7 @@ tech:
  - Tailwind CSS
  - Node
  - Vercel
+date: "2023-8"
 ---
 
 

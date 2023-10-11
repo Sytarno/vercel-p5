@@ -11,6 +11,7 @@ interface Md {
     link?: string,
     image?: string,
     date?: string,
+    tech?: string[],
 
     stargazers?: number,
     last_commit?: Date

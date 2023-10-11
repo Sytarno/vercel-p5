@@ -33,6 +33,11 @@
     user-select: none;
 }
 
+.container a:hover ~ .cursordot{
+    --cursor-size: 20px;
+    transform: scale3d(1.5, 1.5, 1);
+}
+
 .icon-container{
     display: flex;
     padding-top: 2rem;

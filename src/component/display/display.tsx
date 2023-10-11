@@ -8,17 +8,25 @@ import { HiOutlineExternalLink } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Card = (project: Md, setCursor: any) => {
+  
+  console.log(project);
+
   let date: Date = new Date();
 
   if(project.date){
     date = new Date(project.date);
   }
+  
   return (
     <div className={styles['card']}>
-      <div className={styles['date']}>
-        {date.toLocaleString('default', { month: 'short' }).toUpperCase() + " " +
-        date.getFullYear()}
-      </div>
+      {
+      project.date ? <div className={styles['date']}>
+        {
+        date.toLocaleString('default', { month: 'short' }).toUpperCase() + " " +
+        date.getFullYear()
+        }
+      </div> : <></>
+      } 
       
       <div className={styles['body']}>
         
@@ -30,6 +38,9 @@ const Card = (project: Md, setCursor: any) => {
         </div>
         <div className={styles['description']}>{project.description}</div>
       
+        {          
+
+        }
       </div>
     </div>
   )

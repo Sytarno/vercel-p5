@@ -1,10 +1,24 @@
+import { P } from "../interface";
 import styles from "./scroll.module.css";
 
 import { useState, useEffect } from 'react';
 
-const Scroll = () => {
+const Scroll: React.FC<P> = ({ projects }) => {
     const [limit, setLimit] = useState(1);
     const [scrollY, setScrollY] = useState(0);
+
+    
+    useEffect(() => {
+        var body = document.body, html = document.documentElement;
+        let l = Math.max( 
+            body.scrollHeight, body.offsetHeight, 
+            html.clientHeight, html.scrollHeight, 
+            html.offsetHeight
+        ) - window.innerHeight;
+        setLimit(l);
+
+        console.log("resizing from projects");
+    }, [projects]);
 
     useEffect(() => {
         const onResize = () => {
@@ -15,9 +29,8 @@ const Scroll = () => {
                 html.offsetHeight
             ) - window.innerHeight;
             setLimit(l);
+            console.log('resizing');
         };
-
-        onResize();
 
         window.addEventListener("resize", onResize);
         return () => {

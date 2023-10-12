@@ -5,8 +5,8 @@ link: https://github.com/Sytarno/Athena
 tech:
  - Python
  - Wavelink
- - Pycord (Discord)
- - Spotipy (Spotify API)
+ - Pycord
+ - Spotipy
  - Oracle Cloud
 date: "2020-2-23"
 ---

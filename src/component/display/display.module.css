@@ -28,6 +28,7 @@
     column-gap: 20px;
 
     padding-bottom: 0rem;
+    margin-bottom: 0.25rem;
     border-radius: 0.25rem;
 }
 
@@ -83,6 +84,25 @@
 
 
 
+.card .frameworks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card .skill {
+    background-color: rgba(var(--foreground-rgb), 0.1);
+    border-radius: 5000px;
+    padding: 0.5rem;
+    
+    margin-top: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.card a{
+    font-family: NeueMontrealBook;
+    font-size: 1rem;
+    color: rgba(var(--foreground-rgb), 1);
+}
 
 
 .column:hover .card {

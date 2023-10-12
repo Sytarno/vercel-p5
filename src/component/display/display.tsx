@@ -6,24 +6,17 @@ import { Md, P } from "../interface";
 import { useEffect, useState } from "react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCursor } from "../cursor/cursorContext";
 
 const Card = (project: Md, setCursor: any) => {
   
-  console.log(project);
-
-  let date: Date = new Date();
-
-  if(project.date){
-    date = new Date(project.date);
-  }
-  
+  //console.log(project);
   return (
     <div className={styles['card']}>
       {
-      project.date ? <div className={styles['date']}>
+      project.year && project.month ? <div className={styles['date']}>
         {
-        date.toLocaleString('default', { month: 'short' }).toUpperCase() + " " +
-        date.getFullYear()
+        project.month + " " + project.year
         }
       </div> : <></>
       } 
@@ -38,9 +31,14 @@ const Card = (project: Md, setCursor: any) => {
         </div>
         <div className={styles['description']}>{project.description}</div>
       
+        <div className={styles['frameworks']}>
         {          
-
+          project.tech ? 
+            (project.tech.map( (obj, id) => (
+            <div className={styles['skill']} key={id}><a>{obj}</a></div>
+          ))) : <></>
         }
+        </div>
       </div>
     </div>
   )
@@ -55,33 +53,13 @@ const Loading = () => {
 }
 
 //const Display = () => {
-const Display: React.FC<P> = (props) => {
-  const [projects, setProjects] = useState<Md[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        //await new Promise(resolve => setTimeout(resolve, 3000)) //for testing
-        const response = await fetch(`/api/getMeta`);
-        const data: Md[] = await response.json();
-        setProjects(data);
-        setLoading(false);
-
-      } catch (error) {
-        console.error("Error accessing md frontmatter:", error);
-        setLoading(false);
-        return [];
-      }
-    }
-
-    fetchData();
-  }, []);
+const Display: React.FC<P> = ({ projects }) => {
+  const { setCursor } = useCursor();
   
   return (
       <div className={styles['column']}>
         <AnimatePresence>
-        { loading ? <Loading/> :
+        { !projects ? <Loading/> :
           (projects.map( (slug: any, id: number) => (
             <motion.div
               key={id}
@@ -90,7 +68,7 @@ const Display: React.FC<P> = (props) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: id * 0.1}}
             >
-              {Card(slug, props.setCursor)}
+              {Card(slug, setCursor)}
             </motion.div>
           )))
         } 

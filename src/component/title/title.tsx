@@ -11,8 +11,11 @@ import {
 } from 'react-icons/ri'
 
 import { P } from "../interface";
+import { useCursor } from "../cursor/cursorContext";
 
 const Title: React.FC<P> = (props) => {
+    const { setCursor } = useCursor();
+
     return (
         <div className={styles.container}>
         
@@ -22,8 +25,8 @@ const Title: React.FC<P> = (props) => {
 
             <p>
                 <a
-                onMouseEnter={() => props.setCursor(`${cstyles.onheader}`)}
-                onMouseLeave={() => props.setCursor("")}
+                onMouseEnter={() => setCursor(`${cstyles.onheader}`)}
+                onMouseLeave={() => setCursor("")}
                 >
                 new-grad
                 </a>

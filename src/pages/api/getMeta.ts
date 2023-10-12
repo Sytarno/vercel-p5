@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs/promises';
-import { Md } from '@/component/interface';
+import { MdImport, Md } from '@/component/interface';
 import matter from 'gray-matter';
 import path from 'path';
 
@@ -16,7 +16,17 @@ async function getMeta(req: NextApiRequest, res: NextApiResponse){
         slugs.map(async (slug) => {
             const content = await fs.readFile(`src/proj/${slug}.md`, 'utf-8');
             const { data } = matter(content);
-            return data as Md;
+
+            let parse = data as MdImport;
+            let converted = parse as Md;
+            
+            if(parse.date){ 
+              let d = new Date(parse.date);
+              converted.month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
+              converted.year = d.getFullYear() + "";
+            }
+            
+            return converted;
         })
     );
     

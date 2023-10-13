@@ -6,10 +6,10 @@ tech:
  - Next.js
  - React
  - p5
+ - Framer Motion
  - Javascript
  - Typescript
  - Tailwind CSS
- - Node
  - Vercel
 date: "2023-8"
 ---

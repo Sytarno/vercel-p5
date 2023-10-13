@@ -68,6 +68,11 @@ body {
   scroll-behavior: smooth;
 }
 
+
+:any-link{
+  cursor: none;
+}
+
 ::selection {
   background-color: rgb(var(--background-rgb));
   /*

@@ -1,5 +1,7 @@
 import styles from "./title.module.css";
-import cstyles from "../cursor/cursor.module.css"
+import cstyles from "@/component/cursor/cursor.module.css"
+import { AnimatedText } from "@/effects/text/text";
+import Link from "next/link";
 
 import {
     AiFillGithub,
@@ -12,9 +14,26 @@ import {
 
 import { P } from "../interface";
 import { useCursor } from "../cursor/cursorContext";
+import { useState } from "react";
 
 const Title: React.FC<P> = (props) => {
     const { setCursor } = useCursor();
+
+    const rotation: String[] = [
+        "new-grad",
+        "software engineer",
+        "now open source!",
+        "full stack developer",
+        "AR/VR enthusiast",
+        "rhythm gamer",
+        "minimal designer",
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    const forward = () => {
+        setIndex((index+1) % rotation.length);
+    }
 
     return (
         <div className={styles.container}>
@@ -23,19 +42,19 @@ const Title: React.FC<P> = (props) => {
             Evan Nguyen
             </h1>
 
-            <p>
-                <a
-                onMouseEnter={() => setCursor(`${cstyles.onheader}`)}
-                onMouseLeave={() => setCursor("")}
-                >
-                new-grad
-                </a>
-            </p>
+            <a>
+            <AnimatedText text={rotation[index]}
+            onMouseEnter={() => setCursor(`${cstyles.onheader}`)}
+            onMouseLeave={() => setCursor("")}
+            onClick={() => forward()}
+            />
+            </a>
+        
         
             <div className={styles['icon-container']}>
-                <AiFillGithub className={styles.icon} size={32} />
-                <AiFillLinkedin className={styles.icon} size={32} />
-                <RiMailFill className={styles.icon} size={32} />
+                <Link href="https://github.com/Sytarno" target="_blank"><AiFillGithub className={styles.icon} size={32}/></Link>
+                <Link href="https://www.linkedin.com/in/evannguyen11/" target="_blank"><AiFillLinkedin className={styles.icon} size={32}/></Link>
+                <RiMailFill className={styles.icon} size={32}/>
                 <AiFillGithub className={styles.placehold} size={32} />
             </div>
 

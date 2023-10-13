@@ -1,8 +1,12 @@
 //ensure all interfaces share attributes
 
+import { Dispatch, SetStateAction } from "react";
+
 interface P {
     loading?: boolean;
     projects?: Md[];
+    query?: string;
+    setQuery?: Dispatch<SetStateAction<string>>
 }
 
 interface Md {

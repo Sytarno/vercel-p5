@@ -19,12 +19,10 @@
     line-height: 105%;
 }
 
-.container p {
+.container a {
     background-color: transparent;
     mix-blend-mode: difference;
-}
 
-.container a {
     font-size: 1.5rem;
     /*letter-spacing: 0;*/
     font-family: NeueMontrealThin;

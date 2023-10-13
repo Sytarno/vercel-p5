@@ -10,6 +10,7 @@ import Scroll from '@/component/scroll/scroll';
 import Title from '@/component/title/title';
 import Bio from '@/component/bio/bio';
 import Display from "@/component/display/display";
+import Skills from '@/component/skills/skills';
 
 import { Md } from '@/component/interface';
 import { useEffect, useState } from 'react';
@@ -37,7 +38,7 @@ const Page = () => {
       } catch (error) {
         console.error("Error accessing md frontmatter:", error);
         setLoading(false);
-        return [];
+        return [];  
       }
     }
 
@@ -54,6 +55,7 @@ const Page = () => {
             <div>
                 <Title/> 
                 <Bio/>
+                <Skills/>
             </div>
               <Display projects = { projects }/>
         </Layout>

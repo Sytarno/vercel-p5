@@ -17,7 +17,7 @@ const Scroll: React.FC<P> = ({ projects }) => {
         ) - window.innerHeight;
         setLimit(l);
 
-        console.log("resizing from projects");
+        //console.log("resizing from projects");
     }, [projects]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const Scroll: React.FC<P> = ({ projects }) => {
                 html.offsetHeight
             ) - window.innerHeight;
             setLimit(l);
-            console.log('resizing');
+            //console.log('resizing');
         };
 
         window.addEventListener("resize", onResize);

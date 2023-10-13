@@ -9,18 +9,18 @@ Uncompleted version 1 of my portfolio can be found [here](https://github.com/Syt
 ## Development
 Will progressively merge this into main when a certain feature is complete.
 
-Todo list / Changelog
+Feature List / Changelog
  - [x] Add scrolling support for the p5 background, track vertical viewport position
  - [x] Cursor expands on relevant content
  - [x] Icon buttons for linkedin, github, and resume
  - [x] Implemented mini-backend to dynamically fetch markdown files
  - [ ] Interactive subheader
- - [ ] Project section w/ icons/description
- - [ ] Custom scrollbar effect with revealing dates
+ - [x] Project section w/ icons/description
+ - [x] Custom scrollbar effect
  
 Flex goals
  - [ ] Extra stars, tile effect bg
  - [ ] Preloader anim
- - [ ] Element reveal anim 
+ - [x] Element reveal anim 
  - [ ] Spotify rich presence?
  - [ ] Use requests to api/github/repo to monitor repository updates

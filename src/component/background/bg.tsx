@@ -5,9 +5,11 @@ import styles from './bg.module.css'
 import { useEffect, useState } from "react";
 import { P5CanvasInstance, Sketch, SketchProps } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
+import { useCursor } from '@/component/cursor/cursorContext';
 
 type CanvasProps = SketchProps & {
     wyof: number;
+    active: number;
 }
 
 const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
@@ -15,6 +17,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let opa: number, ytarg: number;
     let tFrames = 60;
     let mouseState: number;
+    let active: number;
 
     let bgcolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb').split(',').map(Number);
@@ -25,11 +28,14 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let bgscolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb-start').split(',').map(Number); 
 
+    let selectcolor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--accent').split(',').map(Number);
 
     //let bgc = p5.color('#1D1D1D');
     let bgc = p5.color(bgcolor);
     let fgc = p5.color(foregroundcolor);
     let bgcs = p5.color(bgscolor);
+    let sc = p5.color(selectcolor);
 
     p5.setup = () => {
         p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL)
@@ -39,10 +45,12 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
         ytarg = 0; 
         wyof = 0;
         opa = 0;
+        active = 0;
     };
 
     p5.updateWithProps = (props: CanvasProps) => {
         wyof = props.wyof;
+        active = props.active;
     }
 
     class star{
@@ -71,7 +79,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
             p5.strokeWeight(0);
 
             //show last placed
-            if(this.priority){p5.fill(p5.color('#f5d742'))}else{p5.fill(fgc)}
+            if(this.priority){p5.fill(sc)}else{p5.fill(fgc)}
             
             //spawn effect
             if(this.impulse<0.1){this.impulse=0}else{this.impulse/=1.1}
@@ -282,7 +290,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 
     p5.mouseReleased = () => {
-        if(p5.frameCount - mouseState < 15){
+        if(p5.frameCount - mouseState < 15 && active){
             apply(p5.mouseX, p5.mouseY-ytarg);
         }
     }
@@ -295,6 +303,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
 
 const Background = () => {
     const [scrollY, setScrollY] = useState(0);
+    const { cursor } = useCursor();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -309,11 +318,17 @@ const Background = () => {
         };
     }, []);
 
+    const [active, setActive] = useState(1);
+    useEffect(() => {
+        setActive(cursor == "" ? 1 : 0);
+    }, [cursor])
+
     return (
         <div className={styles.bg}>
             <NextReactP5Wrapper 
                 sketch={sketch} 
                 wyof={scrollY} 
+                active={active}
             />
         </div>
     )

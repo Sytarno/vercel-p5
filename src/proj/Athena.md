@@ -5,6 +5,7 @@ link: https://github.com/Sytarno/Athena
 tech:
  - Python
  - Wavelink
+ - Lavalink
  - Pycord
  - Spotipy
  - Oracle Cloud

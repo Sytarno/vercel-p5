@@ -25,6 +25,7 @@ const Page = () => {
   
   const [projects, setProjects] = useState<Md[]>([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -45,8 +46,32 @@ const Page = () => {
     fetchData();
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+    const mobileRegex = /Mobile/;
+
+    setIsMobile(mobileRegex.test(userAgent));
+  }, []); // Empty dependency array ensures the effect runs only once after initial render
+
   return(
       <main> 
+      { isMobile ?
+      
+      <main> 
+      <Layout>
+        <div>
+          <Title/> 
+          <Bio/>
+          <Skills projects = { projects } setQuery = { setQuery }/>
+        </div>
+        <Display projects = { projects } query = { query }/>
+      </Layout>
+      <Background/>   
+      </main>   
+      :
+
       <CursorProvider>
         <Cursor/>
         <Scroll projects = { projects }/>
@@ -55,14 +80,15 @@ const Page = () => {
             <div>
                 <Title/> 
                 <Bio/>
-                <Skills/>
+                <Skills projects = { projects } setQuery = { setQuery }/>
             </div>
-              <Display projects = { projects }/>
+              <Display projects = { projects } query = { query }/>
         </Layout>
     
 
         <Background/>     
       </CursorProvider>
+      }
       </main>
   )
 }

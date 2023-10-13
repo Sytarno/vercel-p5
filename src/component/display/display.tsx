@@ -21,7 +21,7 @@ const Display: React.FC<P> = ({ projects = [], query }) => {
   return (
       <div className={styles['column']}>
         <AnimatePresence>
-        { (projects.length > 1) ?
+        { projects.length ?
           (projects.map( (slug: any, id: number) => (
             <motion.div
               key={id}

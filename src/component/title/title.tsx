@@ -36,7 +36,7 @@ const Title: React.FC<P> = (props) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onMouseLeave={() => setCursor("")}>
         
             <h1>
             Evan Nguyen
@@ -51,7 +51,7 @@ const Title: React.FC<P> = (props) => {
             </a>
         
         
-            <div className={styles['icon-container']}>
+            <div className={styles['icon-container']} onMouseEnter={() => setCursor("")}>
                 <Link href="https://github.com/Sytarno" target="_blank"><AiFillGithub className={styles.icon} size={32}/></Link>
                 <Link href="https://www.linkedin.com/in/evannguyen11/" target="_blank"><AiFillLinkedin className={styles.icon} size={32}/></Link>
                 <RiMailFill className={styles.icon} size={32}/>

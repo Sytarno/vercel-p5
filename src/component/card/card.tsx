@@ -42,7 +42,7 @@ const Card = (project: Md, setCursor: any) => {
           </span>
 
           }
-          
+
         </div>
         <div className={styles['description']}>{project.description}</div>
       
@@ -50,7 +50,7 @@ const Card = (project: Md, setCursor: any) => {
         {          
           project.tech ? 
             (project.tech.map( (obj, id) => (
-            <div className={styles['skill']} key={id}><a>{obj}</a></div>
+            <div className={styles['skill']} key={id}><p>{obj}</p></div>
           ))) : <></>
         }
         </div>

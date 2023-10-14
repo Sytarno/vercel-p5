@@ -25,7 +25,7 @@ const Page = () => {
   
   const [projects, setProjects] = useState<Md[]>([]);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchData() {

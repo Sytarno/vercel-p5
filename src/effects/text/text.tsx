@@ -33,7 +33,7 @@ export const AnimatedText = ({
 
     useEffect(() => {
         controls.start("visible"); //can add a listener to modify this later
-    }, [currentText]);
+    }, [currentText, controls]);
 
     return (
         <p className={className}>

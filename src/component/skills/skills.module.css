@@ -1,7 +1,6 @@
 .frameworks {
     display: flex;
     flex-wrap: wrap;
-    max-width: 470px;
     margin-top: 50px;
 
     mix-blend-mode: difference;
@@ -14,4 +13,9 @@
 
     margin-top: 0.25rem;
     margin-right: 0.25rem;
+}
+
+.select {
+    background-color: rgba(var(--foreground-rgb), 1);
+    color: rgba(var(--background-rgb), 1)
 }

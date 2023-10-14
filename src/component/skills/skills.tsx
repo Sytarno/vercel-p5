@@ -38,6 +38,20 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
         setFrequency(sorted);
     }, [projects]);
 
+    const [selected, setSelected] = useState<number[]>([]);
+
+    const toggle = (id: number) => {
+        if(selected.includes(id)){
+            setSelected(selected.filter((iid) => iid != id));
+        }else{
+            setSelected([...selected, id]);
+        }
+    }
+
+    useEffect(() => {
+        if(setQuery){ setQuery(selected.map((ind) => frequency[ind][0])); }
+    }, [selected, frequency, setQuery])
+
     return (
         <AnimatePresence>
             <div className={styles['frameworks']}>
@@ -51,7 +65,8 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.5, delay: id * 0.1}}
-                    className={styles['skill']}
+                    className={`${styles['skill']} ${selected.includes(id) ? styles['select'] : ''}`}
+                    onClick={() => toggle(id)}
                 ><p>{name}</p></motion.div>
                 
                 ))) : <></>

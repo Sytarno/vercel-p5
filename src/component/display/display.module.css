@@ -14,11 +14,3 @@
     
     list-style-type: none;
 }
-
-.column:hover .card {
-    opacity: .25;
-}
-
-.column .card:hover {
-    opacity: 1;
-}

@@ -82,8 +82,8 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
                     className={`${styles['skill']} ${selected.includes(name) ? styles['select-black'] : ""}`}
                     onClick={() => toggle(name)}
 
-                    //onMouseEnter={() => setCursor(cstyles['onheader'])}
-                    //onMouseLeave={() => setCursor("")}
+                    onMouseEnter={() => setCursor(cstyles['onheader'])}
+                    onMouseLeave={() => setCursor("")}
                 ><p>
                     {name}
                 </p>

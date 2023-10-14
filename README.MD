@@ -13,14 +13,18 @@ Feature List / Changelog
  - [x] Add scrolling support for the p5 background, track vertical viewport position
  - [x] Cursor expands on relevant content
  - [x] Icon buttons for linkedin, github, and resume
- - [x] Implemented mini-backend to dynamically fetch markdown files
- - [ ] Interactive subheader
+ - [x] Mini-backend to dynamically fetch markdown files
+ - [x] Interactive subheader beneath the name (click to enjoy)
  - [x] Project section w/ icons/description
  - [x] Custom scrollbar effect
+ - [ ] Small logo floater
+ - [ ] Mobile support
+ - [ ] Credits when scrolling down
  
 Flex goals
- - [ ] Extra stars, tile effect bg
+ - [ ] Extra stars, tile effect bg -> too expensive?
  - [ ] Preloader anim
  - [x] Element reveal anim 
  - [ ] Spotify rich presence?
  - [ ] Use requests to api/github/repo to monitor repository updates
+ - [ ] Education / relevant coursework

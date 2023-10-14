@@ -7,18 +7,20 @@ const Scroll: React.FC<P> = ({ projects }) => {
     const [limit, setLimit] = useState(1);
     const [scrollY, setScrollY] = useState(0);
 
-    
     useEffect(() => {
-        var body = document.body, html = document.documentElement;
-        let l = Math.max( 
-            body.scrollHeight, body.offsetHeight, 
-            html.clientHeight, html.scrollHeight, 
-            html.offsetHeight
-        ) - window.innerHeight;
-        setLimit(l);
+        async function onResize(){
+            await new Promise(resolve => setTimeout(resolve, 50)); //for some reason, I have to wait for the animation transition to complete.
+            var body = document.body, html = document.documentElement;
+            let l = Math.max( 
+                body.scrollHeight, body.offsetHeight, 
+                html.clientHeight, html.scrollHeight, 
+                html.offsetHeight
+            ) - window.innerHeight;
+            setLimit(l);
+        } 
 
-        //console.log("resizing from projects");
-    }, [projects]);
+        onResize();
+    }, [projects])
 
     useEffect(() => {
         const onResize = () => {
@@ -29,7 +31,6 @@ const Scroll: React.FC<P> = ({ projects }) => {
                 html.offsetHeight
             ) - window.innerHeight;
             setLimit(l);
-            //console.log('resizing');
         };
 
         window.addEventListener("resize", onResize);
@@ -44,7 +45,7 @@ const Scroll: React.FC<P> = ({ projects }) => {
         };
 
         handleScroll();
-        
+
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);

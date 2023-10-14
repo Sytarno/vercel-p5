@@ -19,6 +19,19 @@ import { useEffect, useState } from 'react';
 //  ssr: false,
 //})
 
+const LayoutObjects = ({ projects, setQuery, query }: any) => {
+  return (
+    <Layout>
+        <div>
+            <Title/> 
+            <Bio/>
+            <Skills projects = { projects } setQuery = { setQuery }/>
+        </div>
+          <Display projects = { projects } query = { query }/>
+    </Layout>
+  )
+}
+
 const Page = () => {
   //const [cursor, setCursor] = useState('');
   //const [iconPos, setIconPos] = useState({x: 0, y: 0});
@@ -57,38 +70,27 @@ const Page = () => {
 
   return(
       <main> 
+      
       { isMobile ?
       
       <main> 
-      <Layout>
-        <div>
-          <Title/> 
-          <Bio/>
-          <Skills projects = { projects } setQuery = { setQuery }/>
-        </div>
-        <Display projects = { projects } query = { query }/>
-      </Layout>
+      <LayoutObjects projects = { projects } setQuery = { setQuery } query = {query}/>
       <Background/>   
-      </main>   
+      </main>
+
       :
 
       <CursorProvider>
         <Cursor/>
         <Scroll projects = { projects }/>
 
-        <Layout>
-            <div>
-                <Title/> 
-                <Bio/>
-                <Skills projects = { projects } setQuery = { setQuery }/>
-            </div>
-              <Display projects = { projects } query = { query }/>
-        </Layout>
-    
-
+        <LayoutObjects projects = { projects } setQuery = { setQuery } query = {query}/>
+  
         <Background/>     
       </CursorProvider>
+
       }
+
       </main>
   )
 }

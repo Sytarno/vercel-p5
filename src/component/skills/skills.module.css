@@ -1,9 +1,12 @@
 .frameworks {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
     flex-wrap: wrap;
     margin-top: 50px;
 
     mix-blend-mode: difference;
+    font-size: 0.9rem;
 }
 
 .skill {
@@ -13,9 +16,32 @@
 
     margin-top: 0.25rem;
     margin-right: 0.25rem;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.select-black {
+    color: rgba(var(--background-rgb), 1);
 }
 
 .select {
-    background-color: rgba(var(--foreground-rgb), 1);
-    color: rgba(var(--background-rgb), 1)
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%; 
+    height: 100%;
+    background: rgba(var(--accent), 1);
+    z-index: -1;
+}
+
+.partial {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%; 
+    height: 100%;
+    background: rgba(var(--foreground-rgb), 1);
+    z-index: 0;
+    mix-blend-mode: difference;
 }

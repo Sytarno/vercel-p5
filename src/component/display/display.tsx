@@ -24,17 +24,17 @@ const Display: React.FC<P> = ({ projects = [], query }) => {
   const [factor, setFactor] = useState(0.1);
 
   useEffect(() => {
-    if(onColumn == 0.25){ setFactor(0.1) } else { setFactor(0.1) }
+    if(onColumn == 0.25){ setFactor(0.1) } else { setFactor(0.1) } //can't pre-emptively set the delay, so useless.
   }, [onColumn])
 
   useEffect(() => {
-    //
     setDisplayed(projects);
   }, [projects]);
 
   useEffect(() => {
     const handleQuery = () => {
       if(query){
+        console.log("query", query);
         setDisplayed(projects.filter((proj) => query.every(cond => proj.tech ? proj.tech.includes(cond) ? proj : null : null)));
       }
     }

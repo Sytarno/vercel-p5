@@ -9,6 +9,12 @@
     font-size: 0.9rem;
 }
 
+@media (max-width: 1150px){
+    .frameworks {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .skill {
     background-color: rgba(var(--foreground-rgb), 0.03);
     border-radius: 10px;

@@ -27,6 +27,7 @@ const Title: React.FC<P> = (props) => {
         "AR/VR enthusiast",
         "rhythm gamer",
         "minimal designer",
+        "click to draw?",
     ];
 
     const [index, setIndex] = useState(0);

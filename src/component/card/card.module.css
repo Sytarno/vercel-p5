@@ -7,7 +7,7 @@
     mix-blend-mode: difference;
     transition: opacity .2s ease-out;
 
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     column-gap: 20px;
 
     padding-bottom: 0rem;
@@ -32,7 +32,7 @@
 
 .card .body {
     margin-right: 1rem;
-    grid-column: 3 / 9;
+    grid-column: 3 / 10;
     grid-row: 1 / 4;
     padding: 1rem 0rem;
 }

@@ -34,7 +34,6 @@ const Display: React.FC<P> = ({ projects = [], query }) => {
   useEffect(() => {
     const handleQuery = () => {
       if(query){
-        console.log("query", query);
         setDisplayed(projects.filter((proj) => query.every(cond => proj.tech ? proj.tech.includes(cond) ? proj : null : null)));
       }
     }

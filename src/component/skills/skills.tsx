@@ -48,14 +48,10 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
         if(!projects.length){ return; }
         if(setQuery) { setQuery(selected); }
 
-        const query = selected;
-
-        console.log("result", selected, query);
-
         let leftover = projects;
-        if(query.length){
+        if(selected.length){
     
-            leftover = projects.filter((proj) => query.every(cond => proj.tech ? proj.tech.includes(cond) ? proj : null : null));
+            leftover = projects.filter((proj) => selected.every(cond => proj.tech ? proj.tech.includes(cond) ? proj : null : null));
         }
 
         let res = build(leftover);
@@ -63,7 +59,9 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
         const sorted = Object.entries(res).sort(comparator);
 
         setFrequency(sorted);
-        setMax(sorted[0][1]);
+        
+        //setMax(sorted[0][1]);
+        setMax(leftover.length);
     }, [selected, projects])
 
     return (

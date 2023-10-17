@@ -14,7 +14,7 @@ import {
 
 import { P } from "../interface";
 import { useCursor } from "../cursor/cursorContext";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Title: React.FC<P> = (props) => {
     const { setCursor } = useCursor();
@@ -31,10 +31,23 @@ const Title: React.FC<P> = (props) => {
     ];
 
     const [index, setIndex] = useState(0);
+    const [int, setInt] = useState<NodeJS.Timeout>();
 
-    const forward = () => {
-        setIndex((index+1) % rotation.length);
-    }
+    const indexRef = useRef(index);
+
+    useEffect(() => {
+        indexRef.current = index;
+    }, [index]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((indexRef.current+1) % rotation.length);
+        }, 5000);
+
+        setInt(interval);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className={styles.container} onMouseLeave={() => setCursor("")}>
@@ -47,7 +60,21 @@ const Title: React.FC<P> = (props) => {
             <AnimatedText text={rotation[index]}
             onMouseEnter={() => setCursor(`${cstyles.onheader}`)}
             onMouseLeave={() => setCursor("")}
-            onClick={() => forward()}
+            onClick={() => {
+                if(int){
+                    clearInterval(int);
+                }
+
+                setIndex((index+1) % rotation.length);
+
+                const interval = setInterval(() => {
+                    setIndex((indexRef.current+1) % rotation.length);
+                }, 5000);
+        
+                setInt(interval);
+
+                return () => clearInterval(interval);
+            }}
             />
             </a>
         

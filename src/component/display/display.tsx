@@ -57,7 +57,8 @@ const Display: React.FC<P> = ({ projects = [], query, loading }) => {
         let results: [Md, number, number][] = displayedRef.current.map( ([proj, bool, id], iterator) => [proj, query.every(cond => proj.tech?.includes(cond)) ? 1 : 0, id]);
         setDisplayed(results.sort(comparator));
       }else{
-        setDisplayed(displayedRef.current.map( ([proj, bool, id], iterator) => [proj, 0, id]));
+        let results: [Md, number, number][] = displayedRef.current.map( ([proj, bool, id], iterator) => [proj, 0, id]);
+        setDisplayed(results.sort(comparator));
       }
     }
 

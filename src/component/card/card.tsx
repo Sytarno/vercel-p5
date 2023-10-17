@@ -4,10 +4,10 @@ import cstyles from "@/component/cursor/cursor.module.css";
 import { Md } from "../interface";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-const Card = (project: Md, setCursor: any) => {
+const Card = ({project, setCursor, selected}: any) => {
   
-  //console.log(project);
   return (
     <div className={styles['card']}>
       {
@@ -49,12 +49,13 @@ const Card = (project: Md, setCursor: any) => {
         <div className={styles['frameworks']}>
         {          
           project.tech ? 
-            (project.tech.map( (obj, id) => (
+            (project.tech.map( (obj: string, id: number) => (
             <div className={styles['skill']} key={id}><p>{obj}</p></div>
           ))) : <></>
         }
         </div>
       </div>
+      <motion.div className={styles['highlight']} animate={{ width: `${15 * selected}px` }}>&nbsp;</motion.div>
     </div>
   )
 }

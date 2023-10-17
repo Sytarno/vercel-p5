@@ -16,6 +16,7 @@ interface Md {
     link?: string,
     image?: string,
 
+    dateInt: number;
     month?: string,
     year?: string,
     

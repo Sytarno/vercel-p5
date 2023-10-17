@@ -18,6 +18,14 @@
   font-display: auto;
 }
 
+@font-face {
+  font-family: NeueMontrealMedium;
+  src: 
+      url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-style: normal;
+  font-display: auto;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 214, 219, 220;

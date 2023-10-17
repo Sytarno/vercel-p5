@@ -62,7 +62,7 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
         
         //setMax(sorted[0][1]);
         setMax(leftover.length);
-    }, [selected, projects])
+    }, [selected, projects, setQuery])
 
     return (
         <AnimatePresence>
@@ -76,9 +76,10 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: id * 0.1}}
+                    transition={{ type: "spring", duration: 0.5, delay: id * 0.1, stiffness: 500, damping: 50 }}
                     className={`${styles['skill']} ${selected.includes(name) ? styles['select-black'] : ""}`}
                     onClick={() => toggle(name)}
+                    layout={false}
 
                     onMouseEnter={() => setCursor(cstyles['onheader'])}
                     onMouseLeave={() => setCursor("")}

@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react';
 //  ssr: false,
 //})
 
-const LayoutObjects = ({ projects, setQuery, query }: any) => {
+const LayoutObjects = ({ projects, setQuery, query, loading}: any) => {
   return (
     <Layout>
         <div>
@@ -27,7 +27,7 @@ const LayoutObjects = ({ projects, setQuery, query }: any) => {
             <Bio/>
             <Skills projects = { projects } setQuery = { setQuery }/>
         </div>
-          <Display projects = { projects } query = { query }/>
+          <Display projects = { projects } query = { query } loading = { loading }/>
     </Layout>
   )
 }
@@ -84,7 +84,7 @@ const Page = () => {
         <Cursor/>
         <Scroll projects = { projects }/>
 
-        <LayoutObjects projects = { projects } setQuery = { setQuery } query = {query}/>
+        <LayoutObjects projects = { projects } setQuery = { setQuery } query = { query } loading = { loading }/>
   
         <Background/>     
       </CursorProvider>

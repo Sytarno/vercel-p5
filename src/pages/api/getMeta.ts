@@ -24,6 +24,7 @@ async function getMeta(req: NextApiRequest, res: NextApiResponse){
               let d = new Date(parse.date);
               converted.month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
               converted.year = d.getFullYear() + "";
+              converted.dateInt = d.getTime();
             }
             
             return converted;

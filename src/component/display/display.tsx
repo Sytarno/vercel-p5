@@ -1,38 +1,20 @@
 import styles from "./display.module.css";
-import cstyles from "@/component/cursor/cursor.module.css";
 
-import { Md, P } from "../interface";
-
-import { useEffect, useState } from "react";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { P, Md } from "../interface";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCursor } from "../cursor/cursorContext";
+import { useEffect, useRef, useState } from "react";
 
-const Card = (project: Md, setCursor: any) => {
-  let date: Date = new Date();
+import Card from "@/component/card/card";
 
-  if(project.date){
-    date = new Date(project.date);
+const comparator = ([projA, A, idA]: [Md, number, number], [projB, B, idB]: [Md, number, number]) => {
+  if(A != B){
+    return B-A;
+  }else if(projA.dateInt != projB.dateInt){
+    return projB.dateInt - projA.dateInt;
+  }else{
+    return projA.title.localeCompare(projB.title);
   }
-  return (
-    <div className={styles['card']}>
-      <div className={styles['date']}>
-        {date.toLocaleString('default', { month: 'short' }).toUpperCase() + " " +
-        date.getFullYear()}
-      </div>
-      
-      <div className={styles['body']}>
-        
-        <div className={styles['title']}
-          onMouseEnter={() => setCursor(`${cstyles.onheader}`)}
-          onMouseLeave={() => setCursor("")}
-        >{project.title} 
-          { project.link ? <div className={styles['icon']}><HiOutlineExternalLink/></div> : <></> }
-        </div>
-        <div className={styles['description']}>{project.description}</div>
-      
-      </div>
-    </div>
-  )
 }
 
 const Loading = () => {
@@ -44,44 +26,69 @@ const Loading = () => {
 }
 
 //const Display = () => {
-const Display: React.FC<P> = (props) => {
-  const [projects, setProjects] = useState<Md[]>([]);
-  const [loading, setLoading] = useState(true);
+const Display: React.FC<P> = ({ projects = [], query, loading }) => {
+  const { setCursor } = useCursor();
+  const [onColumn, setOnColumn] = useState(1);
+  const [displayed, setDisplayed] = useState<[Md, number, number][]>([]);
+  
+
+  const displayedRef = useRef(displayed);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        //await new Promise(resolve => setTimeout(resolve, 3000)) //for testing
-        const response = await fetch(`/api/getMeta`);
-        const data: Md[] = await response.json();
-        setProjects(data);
-        setLoading(false);
+    displayedRef.current = displayed;
+  }, [displayed]);
 
-      } catch (error) {
-        console.error("Error accessing md frontmatter:", error);
-        setLoading(false);
-        return [];
+
+  const [factor, setFactor] = useState(0.1);
+
+  useEffect(() => {
+    if(onColumn == 0.25){ setFactor(0.1) } else { setFactor(0.1) } //can't pre-emptively set the delay, so useless.
+  }, [onColumn]);
+
+  useEffect(() => {
+    let initial: [Md, number, number][] = projects.map((mdx, id) => [mdx, 0, id]);
+    setDisplayed(initial.sort(comparator));
+  }, [projects]);
+
+  useEffect(() => {
+    const handleQuery = () => {
+      if(query && query.length){
+        /*query.every(cond => mdx.tech?.includes(cond)) ? 1 : 0*/
+        let results: [Md, number, number][] = displayedRef.current.map( ([proj, bool, id], iterator) => [proj, query.every(cond => proj.tech?.includes(cond)) ? 1 : 0, id]);
+        setDisplayed(results.sort(comparator));
+      }else{
+        setDisplayed(displayedRef.current.map( ([proj, bool, id], iterator) => [proj, 0, id]));
       }
     }
 
-    fetchData();
-  }, []);
-  
+    handleQuery();
+  }, [query]);
+
+  useEffect(() => {
+    //
+  }, [displayed]);
+
   return (
       <div className={styles['column']}>
         <AnimatePresence>
-        { loading ? <Loading/> :
-          (projects.map( (slug: any, id: number) => (
+        { !loading ?
+          
+          (displayed.map( ([slug, valid, id]: [Md, number, number], it: number) => (
             <motion.div
               key={id}
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, delay: id * 0.1}}
+              animate={{ opacity: onColumn, y: 0, transition: { duration: 0.5, delay: it * factor }}}
+              exit={{ opacity: 0, x: 20, transition: {duration: 0.5, delay: it * factor} }}
+              layout={true}
+              whileHover={{ opacity: 1, transition: { delay: 0 } }}
+              
+              onHoverStart={() => setOnColumn(0.25)}
+              onHoverEnd={() => setOnColumn(1)}
             >
-              {Card(slug, props.setCursor)}
+              <Card project={slug} setCursor={setCursor} selected={valid}/>
             </motion.div>
           )))
+          : <Loading/>
         } 
         </AnimatePresence>
       </div>

@@ -1,10 +1,26 @@
+import { P } from "../interface";
 import styles from "./scroll.module.css";
 
 import { useState, useEffect } from 'react';
 
-const Scroll = () => {
+const Scroll: React.FC<P> = ({ projects }) => {
     const [limit, setLimit] = useState(1);
     const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        async function onResize(){
+            await new Promise(resolve => setTimeout(resolve, 50)); //for some reason, I have to wait for the animation transition to complete.
+            var body = document.body, html = document.documentElement;
+            let l = Math.max( 
+                body.scrollHeight, body.offsetHeight, 
+                html.clientHeight, html.scrollHeight, 
+                html.offsetHeight
+            ) - window.innerHeight;
+            setLimit(l);
+        } 
+
+        onResize();
+    }, [projects])
 
     useEffect(() => {
         const onResize = () => {
@@ -16,8 +32,6 @@ const Scroll = () => {
             ) - window.innerHeight;
             setLimit(l);
         };
-
-        onResize();
 
         window.addEventListener("resize", onResize);
         return () => {
@@ -31,7 +45,7 @@ const Scroll = () => {
         };
 
         handleScroll();
-        
+
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);

@@ -1,0 +1,109 @@
+.card {
+    position: relative;
+    width: 100%;
+    display: grid;
+
+    user-select: text;
+    background-color: transparent;
+    mix-blend-mode: difference;
+    transition: opacity .2s ease-out;
+
+    grid-template-columns: repeat(9, 1fr);
+    column-gap: 0px;
+
+    padding-bottom: 0rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+
+    overflow: hidden;
+}
+
+.card:hover {
+    background-color: rgba(var(--foreground-rgb), 0.05);
+}
+
+
+
+
+.card .date {
+    padding: 1rem 1rem;
+    font-family: NeueMontrealBook;
+    grid-column: 1 / 4;
+    grid-row: 1;
+    color: rgb(var(--grey-out));
+}
+
+.card .body {
+    margin-right: 1rem;
+    grid-column: 3 / 10;
+    grid-row: 1 / 4;
+    padding: 1rem 0rem;
+}
+
+.card .title {
+    font-family: NeueMontrealBook;
+    font-size: 1.2rem;
+    color: white;
+    padding-bottom: 0.5rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.card .icon {
+    opacity: 0;
+    transition: opacity .2s ease-out;
+
+    padding-left: 0.5rem;
+    height: 100%;
+}
+
+.title:hover .icon {
+    opacity: 1;
+}
+
+.card .description{
+    font-family: NeueMontrealBook;
+    font-size: 1rem;
+    color: rgb(var(--foreground-rgb-darker));
+    padding-bottom: 0.25rem;
+}
+
+
+
+
+
+
+.card .frameworks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card .skill {
+    background-color: rgba(var(--foreground-rgb), 0.1);
+    border-radius: 10px;
+    padding: 0.5rem;
+
+    margin-top: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.card p{
+    font-family: NeueMontrealBook;
+    font-size: 1rem;
+    color: rgba(var(--foreground-rgb), 1);
+}
+
+.highlight {
+    position: absolute;
+    left: 0px;
+    bottom: -100px;
+
+    width: 0px; 
+    height: 200px;
+    transform: rotate(-45deg);
+
+    background: rgba(var(--foreground-rgb), 1);
+    z-index: 0;
+    mix-blend-mode: difference;
+}

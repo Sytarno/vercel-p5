@@ -1,7 +1,12 @@
 //ensure all interfaces share attributes
 
+import { Dispatch, SetStateAction } from "react";
+
 interface P {
-    setCursor?: any;
+    loading?: boolean;
+    projects?: Md[];
+    query?: string[];
+    setQuery?: Dispatch<SetStateAction<string[]>>
 }
 
 interface Md {
@@ -10,13 +15,29 @@ interface Md {
 
     link?: string,
     image?: string,
-    date?: string,
+
+    dateInt: number;
+    month?: string,
+    year?: string,
+    
+    tech?: string[],
 
     stargazers?: number,
-    last_commit?: Date
+}
+
+interface MdImport {
+    title: string,
+    description: string,
+
+    link?: string,
+    image?: string,
+
+    date?: string,
+
+    tech?: string[]
 }
 
 export type {
-    Md,
+    Md, MdImport,
     P
 };

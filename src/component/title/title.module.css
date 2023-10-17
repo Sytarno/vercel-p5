@@ -19,18 +19,21 @@
     line-height: 105%;
 }
 
-.container p {
+.container a {
     background-color: transparent;
     mix-blend-mode: difference;
-}
 
-.container a {
     font-size: 1.5rem;
     /*letter-spacing: 0;*/
     font-family: NeueMontrealThin;
     line-height: 105%;
 
     user-select: none;
+}
+
+.container a:hover ~ .cursordot{
+    --cursor-size: 20px;
+    transform: scale3d(1.5, 1.5, 1);
 }
 
 .icon-container{

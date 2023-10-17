@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 import styles from "./cursor.module.css"
+import { useCursor } from "./cursorContext";
 
-interface P {
-    cursor: any;
-}
-
-const Cursor: React.FC<P> = (props) => {
+const Cursor = () => {
     const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+    const { cursor } = useCursor();
 
     useEffect(() => {
         const mouseMoveHandler = (e: MouseEvent) => {
@@ -30,7 +28,7 @@ const Cursor: React.FC<P> = (props) => {
             //top: cursorPos.y
             transform: `translate3d(${cursorPos.x}px, ${cursorPos.y}px, 0)`
         }}>
-            {<div className={`${styles.cursordot} ${props.cursor}`} ></div>
+            {<div className={`${styles.cursordot} ${cursor}`} ></div>
             }
         </div>
     );

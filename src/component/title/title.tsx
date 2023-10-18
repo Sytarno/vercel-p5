@@ -14,7 +14,7 @@ import {
 
 import { P } from "../interface";
 import { useCursor } from "../cursor/cursorContext";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const Title: React.FC<P> = (props) => {
     const { setCursor } = useCursor();
@@ -26,8 +26,9 @@ const Title: React.FC<P> = (props) => {
         "full stack developer",
         "AR/VR enthusiast",
         "rhythm gamer",
-        "minimal designer",
+        "UI/UX designer",
         "click to draw?",
+        "made with love",
     ];
 
     const [index, setIndex] = useState(0);
@@ -35,19 +36,23 @@ const Title: React.FC<P> = (props) => {
 
     const indexRef = useRef(index);
 
+    const forward = useCallback(() => {
+        setIndex((indexRef.current+1) % rotation.length);
+    }, [rotation.length]);
+
     useEffect(() => {
         indexRef.current = index;
     }, [index]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndex((indexRef.current+1) % rotation.length);
+            forward();
         }, 5000);
 
         setInt(interval);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [forward]);
 
     return (
         <div className={styles.container} onMouseLeave={() => setCursor("")}>
@@ -65,10 +70,10 @@ const Title: React.FC<P> = (props) => {
                     clearInterval(int);
                 }
 
-                setIndex((index+1) % rotation.length);
+                forward();
 
                 const interval = setInterval(() => {
-                    setIndex((indexRef.current+1) % rotation.length);
+                    forward();
                 }, 5000);
         
                 setInt(interval);

@@ -81,7 +81,7 @@ const Display: React.FC<P> = ({ projects = [], query, loading }) => {
               animate={{ opacity: onColumn, y: 0, transition: { duration: 0.5, delay: it * factor }}}
               exit={{ opacity: 0, x: 20, transition: {duration: 0.5, delay: it * factor} }}
               layout={true}
-              whileHover={{ opacity: 1, transition: { delay: 0 } }}
+              whileHover={{ opacity: 1 }}
               
               onHoverStart={() => setOnColumn(0.25)}
               onHoverEnd={() => setOnColumn(1)}

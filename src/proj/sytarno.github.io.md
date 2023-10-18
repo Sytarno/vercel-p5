@@ -6,5 +6,6 @@ tech:
  - React
  - Javascript
  - Bootstrap
+ - github-pages
 date: "2020-12-10"
 ---

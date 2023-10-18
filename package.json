@@ -20,7 +20,7 @@
     "framer-motion": "^10.16.4",
     "glob": "^10.3.10",
     "gray-matter": "^4.0.3",
-    "next": "^13.5.4",
+    "next": "^13.5.6-canary.1",
     "next-themes": "^0.2.1",
     "p5": "^1.7.0",
     "postcss": "8.4.31",

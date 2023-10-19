@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { P5CanvasInstance, Sketch, SketchProps } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import { useCursor } from '@/component/cursor/cursorContext';
+import { P } from '../interface';
 
 type CanvasProps = SketchProps & {
     wyof: number;
     active: number;
+    logoPos: [number, number];
 }
 
 const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
@@ -18,6 +20,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     let tFrames = 60;
     let mouseState: number;
     let active: number;
+    let logoPos: [number, number];
 
     let bgcolor = getComputedStyle(document.documentElement)
     .getPropertyValue('--background-rgb').split(',').map(Number);
@@ -51,6 +54,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     p5.updateWithProps = (props: CanvasProps) => {
         wyof = props.wyof;
         active = props.active;
+        logoPos = props.logoPos;
     }
 
     class star{
@@ -239,13 +243,14 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
 
         p5.background(bgc);
 
-        //p5.normalMaterial();
-        //p5.push();
-        //p5.rotateZ(p5.frameCount * 0.01);
-        //p5.rotateX(p5.frameCount * 0.01);
-        //p5.rotateY(p5.frameCount * 0.01);
-        //p5.plane(100);
-        //p5.pop();
+        p5.normalMaterial();
+        p5.push();
+        if(logoPos){ p5.translate(logoPos[0] - xof, logoPos[1] - yof); }
+        p5.rotateZ(p5.frameCount * 0.01);
+        p5.rotateX(p5.frameCount * 0.01);
+        p5.rotateY(p5.frameCount * 0.01);
+        p5.plane(24);
+        p5.pop();
 
         for (var i = circ.length - 1; i>-1; i--){
             circ[i].update();
@@ -301,7 +306,7 @@ const sketch: Sketch = (p5: P5CanvasInstance<CanvasProps>) => {
     }
 };
 
-const Background = () => {
+const Background: React.FC<P> = ({ logoPos }) => {
     const [scrollY, setScrollY] = useState(0);
     const { cursor } = useCursor();
 
@@ -329,6 +334,7 @@ const Background = () => {
                 sketch={sketch} 
                 wyof={scrollY} 
                 active={active}
+                logoPos={logoPos}
             />
         </div>
     )

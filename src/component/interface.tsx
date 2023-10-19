@@ -6,7 +6,9 @@ interface P {
     loading?: boolean;
     projects?: Md[];
     query?: string[];
-    setQuery?: Dispatch<SetStateAction<string[]>>
+    setQuery?: Dispatch<SetStateAction<string[]>>;
+    logoPos?: [number, number];
+    setLogoPos?: Dispatch<SetStateAction<[number, number]>>;
 }
 
 interface Md {

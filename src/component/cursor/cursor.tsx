@@ -12,6 +12,7 @@ const Cursor = () => {
         const mouseMoveHandler = (e: MouseEvent) => {
             requestAnimationFrame(() => {
             setCursorPos({x: e.clientX, y: e.clientY})
+            //console.log(e.clientX, e.clientY);
             });
         };
 

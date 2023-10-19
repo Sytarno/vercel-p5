@@ -19,11 +19,11 @@ import { useEffect, useState } from 'react';
 //  ssr: false,
 //})
 
-const LayoutObjects = ({ projects, setQuery, query, loading}: any) => {
+const LayoutObjects = ({ projects, setQuery, query, loading, setLogoPos}: any) => {
   return (
     <Layout>
         <div>
-            <Title/> 
+            <Title setLogoPos = { setLogoPos }/> 
             <Bio/>
             <Skills projects = { projects } setQuery = { setQuery }/>
         </div>
@@ -39,6 +39,7 @@ const Page = () => {
   const [projects, setProjects] = useState<Md[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState<string[]>([]);
+  const [logoPos, setLogoPos] = useState<[number, number]>([-1, -1]);
 
   useEffect(() => {
     async function fetchData() {
@@ -74,8 +75,16 @@ const Page = () => {
       { isMobile ?
       
       <main> 
-      <LayoutObjects projects = { projects } setQuery = { setQuery } query = {query}/>
-      <Background/>   
+
+      <LayoutObjects 
+      projects = { projects } 
+      query = {query} 
+      setQuery = { setQuery } 
+      loading = { loading }
+      setLogoPos = { setLogoPos }
+      />
+
+      <Background logoPos = { logoPos }/>   
       </main>
 
       :
@@ -84,9 +93,15 @@ const Page = () => {
         <Cursor/>
         <Scroll projects = { projects }/>
 
-        <LayoutObjects projects = { projects } setQuery = { setQuery } query = { query } loading = { loading }/>
+        <LayoutObjects 
+        projects = { projects }
+        query = {query}  
+        setQuery = { setQuery } 
+        loading = { loading }
+        setLogoPos = { setLogoPos }
+        />
   
-        <Background/>     
+        <Background logoPos = { logoPos }/>     
       </CursorProvider>
 
       }

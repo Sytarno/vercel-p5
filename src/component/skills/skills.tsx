@@ -86,7 +86,12 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
                 ><p>
                     {name}
                 </p>
-                <motion.div className={selected.includes(name) ? styles['select'] : styles['partial']} animate={{ width: `${count / max * 100}%` }}>&nbsp;</motion.div>
+                <motion.div 
+                className={selected.includes(name) ? styles['select'] : styles['partial']} 
+                animate={{ width: `${count / max * 100}%` }}
+                transition={{ type: 'spring', stiffness: 200, damping: 50 }}
+                >
+                    &nbsp;</motion.div>
                 </motion.div>
                 ))) : <></>
             }

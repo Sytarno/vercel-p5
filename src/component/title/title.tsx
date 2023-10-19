@@ -16,7 +16,15 @@ import { P } from "../interface";
 import { useCursor } from "../cursor/cursorContext";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const Title: React.FC<P> = (props) => {
+function getPosition( element: HTMLElement ) {
+    var rect = element.getBoundingClientRect();
+    return {
+        x: (rect.left + rect.right) / 2,
+        y: (rect.top + rect.bottom) / 2,
+    };
+}
+
+const Title: React.FC<P> = ({ setLogoPos }) => {
     const { setCursor } = useCursor();
 
     const rotation: String[] = [
@@ -29,6 +37,7 @@ const Title: React.FC<P> = (props) => {
         "UI/UX designer",
         "click to draw?",
         "made with love",
+        "hardware acceleration recommended",
     ];
 
     const [index, setIndex] = useState(0);
@@ -53,6 +62,23 @@ const Title: React.FC<P> = (props) => {
 
         return () => clearInterval(interval);
     }, [forward]);
+
+    useEffect(() => {
+        const onResize = () => {
+            var ele = document.getElementById("placeholder");
+            if(ele){ 
+                var pos = getPosition(ele);
+                if(setLogoPos){ setLogoPos([pos.x, pos.y]) };
+            }
+        }   
+        
+        onResize();
+
+        window.addEventListener("resize", onResize);
+        return () => {
+            window.removeEventListener("resize", onResize);
+        };
+    }, []);
 
     return (
         <div className={styles.container} onMouseLeave={() => setCursor("")}>
@@ -87,8 +113,9 @@ const Title: React.FC<P> = (props) => {
             <div className={styles['icon-container']} onMouseEnter={() => setCursor("")}>
                 <Link href="https://github.com/Sytarno" target="_blank"><AiFillGithub className={styles.icon} size={32}/></Link>
                 <Link href="https://www.linkedin.com/in/evannguyen11/" target="_blank"><AiFillLinkedin className={styles.icon} size={32}/></Link>
-                <RiMailFill className={styles.icon} size={32}/>
-                <AiFillGithub className={styles.placehold} size={32} />
+                <Link href="mailto:evannguyen1101@yahoo.com"><RiMailFill className={styles.icon} size={32}/></Link>
+                <div className={styles['logo']}><AiFillGithub id={"placeholder"} className={styles.placehold} size={32}/></div>
+                <div className={styles['logoText']}>powered by Next.js</div>
             </div>
 
         </div>

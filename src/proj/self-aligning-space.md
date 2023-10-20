@@ -1,6 +1,6 @@
 ---
 title: self-aligning-space
-description: First deployment test. Introduction to p5.
+description: Explored p5.js & processing for interactive web animations in linear space. Introduction to creative design techniques; smoothing with lerp, weighted constraints.
 link: https://github.com/Sytarno/self-aligning-space
 tech:
  - Javascript

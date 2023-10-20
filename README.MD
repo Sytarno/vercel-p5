@@ -17,8 +17,8 @@ Feature List / Changelog
  - [x] Interactive subheader beneath the name (click to enjoy)
  - [x] Project section w/ icons/description
  - [x] Custom scrollbar effect
- - [ ] Small logo floater
- - [ ] Mobile support
+ - [x] Small logo floater
+ - [x] Mobile support
  - [ ] Credits when scrolling down
  
 Flex goals

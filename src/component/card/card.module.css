@@ -122,7 +122,10 @@
 @media (max-width: 800px){
     .card {
         grid-template-columns: none;
-        padding-bottom: 2.5rem;
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
     }
     .card .date {
         font-size: 1rem;
@@ -134,7 +137,6 @@
     .card .body {
         margin-right: 1rem;
         grid-row: 2;
-        padding: 0;
     }
 
     .card p{

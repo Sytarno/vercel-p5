@@ -104,14 +104,48 @@
 
 .highlight {
     position: absolute;
-    left: 0px;
-    bottom: -100px;
 
     width: 0px; 
     height: 200px;
+
+    left: 0px;
+    bottom: -100px;
     transform: rotate(-45deg);
 
     background: rgba(var(--foreground-rgb), 1);
     z-index: 0;
     mix-blend-mode: difference;
+}
+
+
+
+@media (max-width: 800px){
+    .card {
+        grid-template-columns: none;
+        padding-bottom: 2.5rem;
+    }
+    .card .date {
+        font-size: 1rem;
+        grid-row: 1;
+        grid-column: 1 / 10;
+        padding: 0;
+    }
+
+    .card .body {
+        margin-right: 1rem;
+        grid-row: 2;
+        padding: 0;
+    }
+
+    .card p{
+        font-family: NeueMontrealBook;
+        font-size: 0.8rem;
+        color: rgba(var(--foreground-rgb), 1);
+    }
+
+    .highlight {
+        left: auto;
+        right: 0px;
+        transform: rotate(45deg);
+    }
 }

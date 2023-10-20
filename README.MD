@@ -28,3 +28,6 @@ Flex goals
  - [ ] Spotify rich presence?
  - [ ] Use requests to api/github/repo to monitor repository updates
  - [ ] Education / relevant coursework
+
+Known bugs to be fixed
+ - [ ] Address bar hides when scrolling down on mobile. Causes the background to desync, cause it isn't considered a 'resize' action.

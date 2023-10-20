@@ -1,6 +1,6 @@
 ---
 title: vercel-p5
-description: Second portfolio website in Next.js. You are here!
+description: Second portfolio website in Next.js. Starring over the top animations with Framer and p5. Supports a full frontend with a micro-backend to load markdown files. You are currently here!
 link: https://github.com/Sytarno/vercel-p5
 tech:
  - Next.js

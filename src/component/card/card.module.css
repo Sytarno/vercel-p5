@@ -67,8 +67,16 @@
     font-size: 1rem;
     color: rgb(var(--foreground-rgb-darker));
     padding-bottom: 0.25rem;
+
+    max-height: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: max-height 0.3s ease-in-out;
 }
 
+.card:hover .description{
+    max-height: none;
+}
 
 
 

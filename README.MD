@@ -18,7 +18,7 @@ Feature List / Changelog
  - [x] Project section w/ icons/description
  - [x] Custom scrollbar effect
  - [x] Small logo floater
- - [ ] Mobile support (50%)
+ - [ ] Mobile support (90%) - There is a known issue with iPhone 13/14 and lower, where text in the frameworks section will 'dissappear'. Still debugging to fix this.
  - [ ] Credits when scrolling down
  
 Flex goals

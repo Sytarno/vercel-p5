@@ -76,6 +76,21 @@
     opacity: 1;
 }
 
+
+.logoMobile {
+    position: relative;
+    border-radius: 0.25em;
+    background-color: rgba(var(--foreground-rgb), 0.1);
+
+    transition-timing-function: cubic-bezier(0.3, 0.1, 0.2, 1);
+    transition-duration: 0.3s;
+}
+
+.logoMobile:hover + .logoText{
+    opacity: 1;
+}
+
+
 .logoText {
     opacity: 0;
     background-color: rgba(var(--background-rgb), 0.2);
@@ -97,4 +112,24 @@
 
     font-style: NeueMontrealBook;
     mix-blend-mode: multiply;
+}
+
+@media (max-width: 407px){
+    .container h1 {
+        font-size: 3.3rem;
+    }
+
+    .logoText {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 336px){
+    .container h1 {
+        font-size: 3.1rem;
+    }
+
+    .logoText {
+        font-size: 0.7rem;
+    }
 }

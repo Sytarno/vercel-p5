@@ -18,7 +18,7 @@ Feature List / Changelog
  - [x] Project section w/ icons/description
  - [x] Custom scrollbar effect
  - [x] Small logo floater
- - [x] Mobile support
+ - [ ] Mobile support (50%)
  - [ ] Credits when scrolling down
  
 Flex goals

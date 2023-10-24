@@ -22,7 +22,6 @@
 
 .skill {
     background-color: rgba(var(--foreground-rgb), 0.03);
-    border-radius: 10px;
     padding: 0.5rem;
 
     margin-top: 0.25rem;
@@ -30,6 +29,10 @@
 
     position: relative;
     overflow: hidden;
+
+    mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+    border-radius: 10px;
+    transform: translate3d(0,0,0);
 }
 
 .select-black {
@@ -54,9 +57,9 @@
 
     mix-blend-mode: difference;
     height: 100%;
-    background: rgba(var(--foreground-rgb), 1);
     
-    transform: translate3d(0,0,10);
+    background: rgba(var(--foreground-rgb), 1);
+    transform: translate3d(0,0,0px);
 }
 
 @media (max-width: 800px){

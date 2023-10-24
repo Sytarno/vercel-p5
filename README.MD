@@ -18,13 +18,14 @@ Feature List / Changelog
  - [x] Project section w/ icons/description
  - [x] Custom scrollbar effect
  - [x] Small logo floater
- - [ ] Mobile support (90%) - There is a known issue with iPhone 13/14 and lower, where text in the frameworks section will 'dissappear'. Still debugging to fix this.
+ - [x] Mobile support
  - [ ] Credits when scrolling down
  
 Flex goals
  - [ ] Extra stars, tile effect bg -> too expensive?
  - [ ] Preloader anim
  - [x] Element reveal anim 
+ - [x] New logo on mobile, reduced performance strain.
  - [ ] Spotify rich presence?
  - [ ] Use requests to api/github/repo to monitor repository updates
  - [ ] Education / relevant coursework

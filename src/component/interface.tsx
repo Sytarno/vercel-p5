@@ -9,6 +9,7 @@ interface P {
     setQuery?: Dispatch<SetStateAction<string[]>>;
     logoPos?: [number, number];
     setLogoPos?: Dispatch<SetStateAction<[number, number]>>;
+    isMobile?: boolean;
 }
 
 interface Md {

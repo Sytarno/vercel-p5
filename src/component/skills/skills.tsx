@@ -65,38 +65,41 @@ const Skills: React.FC<P> = ({ projects = [], setQuery }) => {
     }, [selected, projects, setQuery])
 
     return (
-        <AnimatePresence>
-            <div className={styles['frameworks']}>
-            {          
-                frequency ? 
-                (frequency.map( ([name, count], id) => (
-                
-                <motion.div 
-                    key={id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ type: "spring", duration: 0.5, delay: id * 0.1, stiffness: 500, damping: 50 }}
-                    className={`${styles['skill']} ${selected.includes(name) ? styles['select-black'] : ""}`}
-                    onClick={() => toggle(name)}
-                    layout={false}
+        <div className={styles['header']}>
+            DEMONSTRATED SKILLS
+            <AnimatePresence>
+                <div className={styles['frameworks']}>
+                {          
+                    frequency ? 
+                    (frequency.map( ([name, count], id) => (
+                    
+                    <motion.div 
+                        key={id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ type: "spring", duration: 0.5, delay: id * 0.1, stiffness: 500, damping: 50 }}
+                        className={`${styles['skill']} ${selected.includes(name) ? styles['select-black'] : ""}`}
+                        onClick={() => toggle(name)}
+                        layout={false}
 
-                    onMouseEnter={() => setCursor(cstyles['onheader'])}
-                    onMouseLeave={() => setCursor("")}
-                ><p>
-                    {name}
-                </p>
-                <motion.div 
-                className={selected.includes(name) ? styles['select'] : styles['partial']} 
-                animate={{ width: `${count / max * 100}%` }}
-                transition={{ type: 'spring', stiffness: 200, damping: 50 }}
-                >
-                    &nbsp;</motion.div>
-                </motion.div>
-                ))) : <></>
-            }
-            </div>
-        </AnimatePresence>
+                        onMouseEnter={() => setCursor(cstyles['onheader'])}
+                        onMouseLeave={() => setCursor("")}
+                    ><p>
+                        {name}
+                    </p>
+                    <motion.div 
+                    className={selected.includes(name) ? styles['select'] : styles['partial']} 
+                    animate={{ width: `${count / max * 100}%` }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 50 }}
+                    >
+                        &nbsp;</motion.div>
+                    </motion.div>
+                    ))) : <></>
+                }
+                </div>
+            </AnimatePresence>
+        </div>
     )
 }
 

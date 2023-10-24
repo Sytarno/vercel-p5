@@ -1,0 +1,21 @@
+.square {
+    height: 32px;
+    width: 32px;
+    position: relative;
+}
+
+.squarebox {
+    position: absolute;
+    display: flex;
+    width: 4.3rem;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+}
+
+.squarebox li{
+    list-style: none;
+    
+    border-radius: 999px;
+    height: 2rem;
+    width: 2rem;
+}

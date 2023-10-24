@@ -67,7 +67,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb-start));
+  background: rgb(var(--background-rgb));
   
   cursor: none; /* Hide the default cursor */
   user-select: none;

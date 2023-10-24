@@ -2,6 +2,7 @@ import styles from "./title.module.css";
 import cstyles from "@/component/cursor/cursor.module.css"
 import { AnimatedText } from "@/effects/text/text";
 import Link from "next/link";
+import Squares from "./squares";
 
 import {
     AiFillGithub,
@@ -24,24 +25,12 @@ function getPosition( element: HTMLElement ) {
     };
 }
 
-const Title: React.FC<P> = ({ setLogoPos }) => {
+const Title: React.FC<P> = ({ setLogoPos, isMobile = false }) => {
     const { setCursor } = useCursor();
-
-    const rotation: String[] = [
-        "new-grad",
-        "software engineer",
-        "now open source!",
-        "full stack developer",
-        "AR/VR enthusiast",
-        "rhythm gamer",
-        "UI/UX designer",
-        "click to draw?",
-        "made with love",
-        "hardware acceleration recommended",
-    ];
 
     const [index, setIndex] = useState(0);
     const [int, setInt] = useState<NodeJS.Timeout>();
+    const [rotation, setRotation] = useState<string[]>([""]);
 
     const indexRef = useRef(index);
 
@@ -64,21 +53,51 @@ const Title: React.FC<P> = ({ setLogoPos }) => {
     }, [forward]);
 
     useEffect(() => {
-        const onResize = () => {
-            var ele = document.getElementById("placeholder");
-            if(ele){ 
-                var pos = getPosition(ele);
-                if(setLogoPos){ setLogoPos([pos.x, pos.y]) };
-            }
-        }   
-        
-        onResize();
+        if(!isMobile && setLogoPos){ 
+            const onResize = () => {
+                var ele = document.getElementById("placeholder");
+                if(ele){ 
+                    var pos = getPosition(ele);
+                    setLogoPos([pos.x, pos.y]);
+                }
+            }   
+            
+            onResize();
 
-        window.addEventListener("resize", onResize);
-        return () => {
-            window.removeEventListener("resize", onResize);
-        };
-    }, []);
+            setRotation(
+                [
+                "new-grad",
+                "software engineer",
+                "now open source!",
+                "full stack developer",
+                "AR/VR enthusiast",
+                "rhythm gamer",
+                "UI/UX designer",
+                "click to draw?",
+                "made with love",
+                ]
+            );
+
+            window.addEventListener("resize", onResize);
+            return () => {
+                window.removeEventListener("resize", onResize);
+            };
+        }else{
+            
+            setRotation(
+                [
+                "new-grad",
+                "software engineer",
+                "now open source!",
+                "full stack developer",
+                "AR/VR enthusiast",
+                "rhythm gamer",
+                "UI/UX designer",
+                "made with love",
+                ]
+            );
+        }
+    }, [isMobile, setLogoPos]);
 
     return (
         <div className={styles.container} onMouseLeave={() => setCursor("")}>
@@ -114,7 +133,9 @@ const Title: React.FC<P> = ({ setLogoPos }) => {
                 <Link href="https://github.com/Sytarno" target="_blank"><AiFillGithub className={styles.icon} size={32}/></Link>
                 <Link href="https://www.linkedin.com/in/evannguyen11/" target="_blank"><AiFillLinkedin className={styles.icon} size={32}/></Link>
                 <Link href="mailto:evannguyen1101@yahoo.com"><RiMailFill className={styles.icon} size={32}/></Link>
-                <div className={styles['logo']}><AiFillGithub id={"placeholder"} className={styles.placehold} size={32}/></div>
+                <div className={isMobile ? styles['logoMobile'] : styles['logo']}>
+                    { isMobile ? <Squares/> : <AiFillGithub id={"placeholder"} className={styles.placehold} size={32}/> }
+                </div>
                 <div className={styles['logoText']}>powered by Next.js</div>
             </div>
 
